@@ -1,0 +1,107 @@
+
+.mainContainer {
+    display: grid;
+    grid-template-rows: 100vh 100vh 100vh;
+    scroll-snap-type: y mandatory;
+
+    header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 90vh 10vh;
+        background-color: #272727;
+        scroll-snap-align: center;
+
+        .logo {
+            grid-column: 2;
+            grid-row: 1;
+            margin: auto;
+            z-index: 1;
+
+            h1 {
+                color: green;
+                margin: 0;
+        
+                font-weight: normal;
+                font-size: 60px;
+        
+                span {
+                    color: white;
+                }
+            }
+        
+            h2 {
+                color: white;
+                margin: 0;
+        
+                font-weight: normal;
+
+                span {
+                    transition: color 1s;
+                }
+            }
+
+            &:hover {
+                h2 {
+                    span {
+                        color: green;
+                    }
+                }
+            }
+
+            &:hover ~ .hoverCircle { 
+                background-color: green; 
+
+            }
+        }
+
+        .hoverCircle {
+            grid-column: 2;
+            grid-row: 1;
+            margin: auto;
+            height: 300px;
+            width: 300px;
+            border-radius: 100%;
+
+            transition: background-color 1s;
+        }
+
+        .downArrows {
+            grid-column: 2;
+            grid-row: 2;
+            margin: auto;
+
+            @keyframes hop {
+                0% {
+                    transform: translateY(0);
+                }
+                5% {
+                    transform: translateY(-10px);
+                }
+                10% {
+                    transform: translateY(0);
+                }
+                15% {
+                    transform: translateY(-10px);
+                }
+                20% {
+                    transform: translateY(0);
+                }
+                100% {
+                    transform: translateY(0);
+                }
+            }
+
+            svg {
+                animation: hop 3s infinite forwards;
+            }
+
+        }
+
+    }
+
+    main {
+        grid-row: 2;
+        scroll-snap-align: center;
+        background: green;
+    }
+}

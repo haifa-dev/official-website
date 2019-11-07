@@ -4,6 +4,8 @@ import { useParams } from 'react-router';
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import './App.css';
 
+import LandingPage from '../pages/LandingPage/LandingPage';
+
 const Home = () => (
   <div className="App">
     <header className="App-header">
@@ -39,7 +41,7 @@ const ProjectRequest = () => <h1>Project Requests</h1>
 
 const Routes = () => (
   <Switch>
-    <Route exact path="/" component={Home} />
+    <Route exact path="/" component={LandingPage} />
     <Route exact path="/about" component={() => <h1>About</h1>} />
     <Route exact path="/portfolio/projects/:id" component={Project} />
     <Route exact path="/project-request" component={ProjectRequest} />
