@@ -50,6 +50,7 @@ b {
             h1 {
                 color: $mainColor;
                 margin: 0;
+                user-select: none;
         
                 font-weight: normal;
                 font-size: 60px;
@@ -62,6 +63,7 @@ b {
             h2 {
                 color: white;
                 margin: 0;
+                user-select: none;
         
                 font-weight: normal;
 
@@ -119,6 +121,10 @@ b {
 
             svg {
                 animation: hop 3s infinite forwards;
+            }
+
+            @include media-phone {
+                margin-bottom: 25px;
             }
 
         }
