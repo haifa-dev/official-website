@@ -1,0 +1,203 @@
+
+@mixin media-phone {
+    @media only screen and (max-width: 450px) {
+        @content;
+    }
+}
+
+$mainColor: green;
+$secondaryColor: #272727;
+
+b {
+    color: $mainColor;
+}
+
+.parent {
+    scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(100vh);
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+    overflow: scroll;
+}
+
+.navLinkStatic {
+    color: $secondaryColor;
+    text-decoration: none;
+}
+
+.navLinkSelected {
+    color: $mainColor;
+    text-decoration: underline;
+}
+
+.mainContainer {
+    display: grid;
+    grid-template-rows: 100vh 100vh;
+
+    header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 90vh 10vh;
+        background-color: $secondaryColor;
+        scroll-snap-align: center;
+
+        .logo {
+            grid-column: 2;
+            grid-row: 1;
+            margin: auto;
+            z-index: 1;
+
+            h1 {
+                color: $mainColor;
+                margin: 0;
+        
+                font-weight: normal;
+                font-size: 60px;
+        
+                span {
+                    color: white;
+                }
+            }
+        
+            h2 {
+                color: white;
+                margin: 0;
+        
+                font-weight: normal;
+
+                span {
+                    transition: color 1s;
+                }
+            }
+
+            &:hover {
+                h2 {
+                    span {
+                        color: $mainColor;
+                    }
+                }
+            }
+
+            &:hover ~ .hoverCircle { 
+
+                background-color: $mainColor; 
+
+            }
+        }
+
+        .hoverCircle {
+            grid-column: 2;
+            grid-row: 1;
+            margin: auto;
+            height: 300px;
+            width: 300px;
+            border-radius: 100%;
+
+            transition: background-color 1s;
+        }
+
+        .downArrows {
+            grid-column: 2;
+            grid-row: 2;
+            margin: auto;
+
+            @keyframes hop {
+                
+                5% {
+                    transform: translateY(-10px);
+                }
+                10% {
+                    transform: translateY(0);
+                }
+                15% {
+                    transform: translateY(-10px);
+                }
+                20% {
+                    transform: translateY(0);
+                }
+            }
+
+            svg {
+                animation: hop 3s infinite forwards;
+            }
+
+        }
+
+    }
+
+    main {
+        grid-row: 2;
+        scroll-snap-align: center;
+        
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: 50px 100px auto 100px auto;
+
+        margin: 0 20px;
+
+        nav {
+            grid-column: 1 / span 3;
+            grid-row: 1;
+            display: flex;
+            flex-direction: row;
+            position: sticky;
+            top: 0;
+            padding-top: 10px;
+            background: white;
+
+            a {
+                font-size: 20px;
+                text-align: center;
+                margin: 0 10px;
+
+                @include media-phone {
+                    font-size: 14px;
+                }
+
+            }
+
+            #homeNav {
+                grid-column: 1;
+            }
+
+            #aboutNav {
+                grid-column: 2;
+            }
+        }
+
+        h1 {
+            font-weight: normal;
+            text-align: center; 
+        }
+
+        .aboutHeader {
+            grid-row: 2;
+            grid-column: 1 / span 3;
+        }
+
+        .articles {
+            grid-row: 3;
+            grid-column: 2;
+
+            @include media-phone {
+                grid-column: 1 / span 3;
+            }
+        }
+
+        .contactHeader {
+            grid-row: 4;
+            grid-column: 1 / span 3;
+        }
+
+        .contactInfo {
+            grid-row: 5;
+            grid-column: 2;
+
+            @include media-phone {
+                grid-column: 1 / span 3;
+            }
+
+        }
+
+    }
+}
