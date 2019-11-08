@@ -5,6 +5,13 @@
     }
 }
 
+$mainColor: green;
+$secondaryColor: #272727;
+
+b {
+    color: $mainColor;
+}
+
 .parent {
     scroll-snap-type: mandatory;
     scroll-snap-points-y: repeat(100vh);
@@ -13,15 +20,25 @@
     overflow: scroll;
 }
 
+.navLinkStatic {
+    color: $secondaryColor;
+    text-decoration: none;
+}
+
+.navLinkSelected {
+    color: $mainColor;
+    text-decoration: underline;
+}
+
 .mainContainer {
     display: grid;
-    grid-template-rows: 100vh 100vh 100vh;
+    grid-template-rows: 100vh 100vh;
 
     header {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 90vh 10vh;
-        background-color: #272727;
+        background-color: $secondaryColor;
         scroll-snap-align: center;
 
         .logo {
@@ -31,7 +48,7 @@
             z-index: 1;
 
             h1 {
-                color: green;
+                color: $mainColor;
                 margin: 0;
         
                 font-weight: normal;
@@ -56,13 +73,13 @@
             &:hover {
                 h2 {
                     span {
-                        color: green;
+                        color: $mainColor;
                     }
                 }
             }
 
             &:hover ~ .hoverCircle { 
-                background-color: green; 
+                background-color: $mainColor; 
 
             }
         }
@@ -113,7 +130,7 @@
         
         display: grid;
         grid-template-columns: 1fr 2fr 1fr;
-        grid-template-rows: 50px 100px auto;
+        grid-template-rows: 50px 100px auto 100px auto;
 
         margin: 0 20px;
 
@@ -128,8 +145,6 @@
             background: white;
 
             a {
-                text-decoration: none;
-                color: black;
                 font-size: 20px;
                 text-align: center;
                 margin: 0 10px;
@@ -150,27 +165,38 @@
         }
 
         h1 {
+            font-weight: normal;
+            text-align: center; 
+        }
+
+        .aboutHeader {
             grid-row: 2;
             grid-column: 1 / span 3;
-            font-weight: normal;
-            text-align: center;
-            b {
-                color: green;
-            }
         }
 
         .articles {
             grid-row: 3;
             grid-column: 2;
-            
-            img {
-                width: 20px;
-
-            }
 
             @include media-phone {
                 grid-column: 1 / span 3;
             }
+        }
+
+        .contactHeader {
+            grid-row: 4;
+            grid-column: 1 / span 3;
+        }
+
+        .contactInfo {
+            grid-row: 5;
+            grid-column: 2;
+
+            @include media-phone {
+                grid-column: 1 / span 3;
+            }
+
+
         }
 
     }

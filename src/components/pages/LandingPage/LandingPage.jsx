@@ -12,25 +12,57 @@ const LandingPage = () => {
         color: "white"
     }
 
-    var parentRef = useRef(null);
+    var refs = {
+        parent: useRef(null),
+        contactDiv : useRef(null),
+        homeNavLink : useRef(null),
+        aboutNavLink: useRef(null),
+        contactNavLink: useRef(null),
+    }
 
-    function handleScroll() {
-        if (parentRef.current.scrollTop >= window.innerHeight) {
-            parentRef.current.style.scrollSnapType = "none";
+      function switchNavLink(navLink)
+      {
+        var refArr = Object.entries(refs).filter(e => e[0].includes("Nav"));
+        refArr.forEach(r => {
+            if (r[1].current === navLink)
+            {
+                r[1].current.className = styles.navLinkSelected;
+            }
+            else
+            {
+                r[1].current.className = styles.navLinkStatic;
+            }
+        })
+      }
+
+      function handleScroll() {
+        if (refs.parent.current.scrollTop >= window.innerHeight) {
+            refs.parent.current.style.scrollSnapType = "none";
+
+            if (refs.parent.current.scrollTop + window.innerHeight 
+                >= refs.contactDiv.current.offsetTop)
+            {
+                switchNavLink(refs.contactNavLink.current);
+            }
+            else
+            {
+                switchNavLink(refs.aboutNavLink.current);
+            }
+
         }
         else {
-            parentRef.current.style.scrollSnapType = "y mandatory";
+            refs.parent.current.style.scrollSnapType = "y mandatory";
+            switchNavLink(refs.homeNavLink.current);
         }
     }
 
+
     useEffect(() => {
-        parentRef.current.addEventListener('scroll', handleScroll, false);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        return () => parentRef.current.removeEventListener('scroll', handleScroll, false);
+        refs.parent.current.addEventListener('scroll', handleScroll, false);
     })
 
     return (
-            <div className={styles.parent} ref={parentRef}>
+            <div className={styles.parent} ref={refs.parent}>
                 <div className={styles.mainContainer}>
 
                     <header id="home">
@@ -51,11 +83,27 @@ const LandingPage = () => {
 
                     <main id="about">
                         <nav>
-                            <a id="homeNav" href="#home">Home</a>
-                            <a id="aboutNav" href="#about">About Us</a>
+                            <a id="homeNav" 
+                                href="#home" 
+                                className={styles.navLinkStatic}
+                                ref={refs.homeNavLink}>
+                                Home
+                            </a>
+                            <a id="aboutNav" 
+                                href="#about" 
+                                className={styles.navLinkStatic}
+                                ref={refs.aboutNavLink}>
+                                About Us
+                            </a>
+                            <a id="contactNav" 
+                                href="#contact" 
+                                className={styles.navLinkStatic}
+                                ref={refs.contactNavLink}>
+                                Contact
+                            </a>
                         </nav>
 
-                        <h1>Developers of Haifa <b>unite!</b></h1>
+                        <h1 className={styles.aboutHeader}>Developers of Haifa <b>unite!</b></h1>
 
                         <div className={styles.articles}>
 
@@ -90,6 +138,19 @@ const LandingPage = () => {
                                 </p>
                             </article>
 
+                        </div>
+
+                        <h1 className={styles.contactHeader}>Let's get in touch.</h1>
+
+                        <div id="contact" 
+                            className={styles.contactInfo}
+                            ref={refs.contactDiv}>
+                            <p>
+                                If you're a professional developer or lector, and you'd like to talk or provide content to our meetups, please <b>contact David Klein</b> via <a href="https://www.linkedin.com/in/david-klein-835048161/">LinkedIn</a> or <a href="mailto:davidklein.4496@gmail.com">by Email</a>.
+                            </p>
+                            <p>
+                                If you're new to development and would like to learn how to code, network with professionals and learn together, join the <a href="https://chat.whatsapp.com/8skL1KY0Nhv1uy3MDYbLIR">freeCodeCamp Haifa WhatsApp group</a> and we'll meet you as soon as our next weekly meetup!
+                            </p>
                         </div>
 
                     </main>
