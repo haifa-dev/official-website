@@ -79,6 +79,7 @@ b {
             }
 
             &:hover ~ .hoverCircle { 
+
                 background-color: $mainColor; 
 
             }
@@ -195,7 +196,6 @@ b {
             @include media-phone {
                 grid-column: 1 / span 3;
             }
-
 
         }
 
