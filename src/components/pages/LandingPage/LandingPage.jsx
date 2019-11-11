@@ -1,7 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Icon from '@mdi/react'
 import { mdiChevronDown } from '@mdi/js';
 import styles from './LandingPage.module.scss';
+
+import NavBar from '../../NavBar/NavBar';
 
 const LandingPage = () => {
 
@@ -14,48 +16,32 @@ const LandingPage = () => {
 
     var refs = {
         parent: useRef(null),
-        contactDiv : useRef(null),
-        homeNavLink : useRef(null),
-        aboutNavLink: useRef(null),
-        contactNavLink: useRef(null),
+        contactDiv: useRef(null),
     }
 
-      function switchNavLink(navLink)
-      {
-        var refArr = Object.entries(refs).filter(e => e[0].includes("Nav"));
-        refArr.forEach(r => {
-            if (r[1].current === navLink)
-            {
-                r[1].current.className = styles.navLinkSelected;
-            }
-            else
-            {
-                r[1].current.className = styles.navLinkStatic;
-            }
-        })
-      }
+    var [currentNav, setCurrentNav] = useState("home");
 
-      function handleScroll() {
+    function handleScroll() {        
         if (refs.parent.current.scrollTop >= window.innerHeight) {
             refs.parent.current.style.scrollSnapType = "none";
 
             if (refs.parent.current.scrollTop + window.innerHeight 
                 >= refs.contactDiv.current.offsetTop)
-            {
-                switchNavLink(refs.contactNavLink.current);
+            {                
+                if (currentNav !== "contact") setCurrentNav("contact");
             }
             else
             {
-                switchNavLink(refs.aboutNavLink.current);
+                if (currentNav !== "about") setCurrentNav("about");
             }
 
         }
         else {
             refs.parent.current.style.scrollSnapType = "y mandatory";
-            switchNavLink(refs.homeNavLink.current);
+            if (currentNav !== "home") setCurrentNav("home");
         }
     }
-
+    
 
     useEffect(() => {
         refs.parent.current.addEventListener('scroll', handleScroll, false);
@@ -82,26 +68,8 @@ const LandingPage = () => {
                     </header>
 
                     <main id="about">
-                        <nav>
-                            <a id="homeNav" 
-                                href="#home" 
-                                className={styles.navLinkStatic}
-                                ref={refs.homeNavLink}>
-                                Home
-                            </a>
-                            <a id="aboutNav" 
-                                href="#about" 
-                                className={styles.navLinkStatic}
-                                ref={refs.aboutNavLink}>
-                                About Us
-                            </a>
-                            <a id="contactNav" 
-                                href="#contact" 
-                                className={styles.navLinkStatic}
-                                ref={refs.contactNavLink}>
-                                Contact
-                            </a>
-                        </nav>
+
+                        <NavBar current={currentNav}/>
 
                         <h1 className={styles.aboutHeader}>Developers of Haifa <b>unite!</b></h1>
 
