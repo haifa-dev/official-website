@@ -1,38 +1,17 @@
-
-@mixin media-phone {
-    @media only screen and (max-width: 450px) {
-        @content;
-    }
-}
-
-$mainColor: green;
-$secondaryColor: #272727;
-
-b {
-    color: $mainColor;
-}
+@import './src/stylesheets/global.scss';
 
 .parent {
     scroll-snap-type: mandatory;
     scroll-snap-points-y: repeat(100vh);
     scroll-snap-type: y mandatory;
     height: 100vh;
-    overflow: scroll;
-}
-
-.navLinkStatic {
-    color: $secondaryColor;
-    text-decoration: none;
-}
-
-.navLinkSelected {
-    color: $mainColor;
-    text-decoration: underline;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .mainContainer {
     display: grid;
-    grid-template-rows: 100vh 100vh;
+    grid-template-rows: 100vh auto;
 
     header {
         display: grid;
@@ -132,7 +111,7 @@ b {
 
     main {
         grid-row: 2;
-        scroll-snap-align: center;
+        scroll-snap-align: start;
         
         display: grid;
         grid-template-columns: 1fr 2fr 1fr;
@@ -205,4 +184,10 @@ b {
         }
 
     }
+
+    footer {
+        text-align: center;
+        font-size: 12px;
+    }
+
 }

@@ -1,0 +1,11 @@
+@import './src/stylesheets/global.scss';
+
+.navLinkStatic {
+    color: $secondaryColor;
+    text-decoration: none;
+}
+
+.navLinkSelected {
+    color: $mainColor;
+    text-decoration: underline;
+}

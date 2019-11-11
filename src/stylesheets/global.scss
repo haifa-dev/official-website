@@ -1,0 +1,12 @@
+$mainColor: green;
+$secondaryColor: #272727;
+
+@mixin media-phone {
+    @media only screen and (max-width: 450px) {
+        @content;
+    }
+}
+
+b {
+    color: $mainColor;
+}

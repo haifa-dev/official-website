@@ -1,8 +1,15 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Icon from '@mdi/react'
 import { mdiChevronDown } from '@mdi/js';
 import styles from './LandingPage.module.scss';
 
+import NavBar from '../../NavBar/NavBar';
+
+/**
+ * A temporary landing page for the official haifa:dev website.
+ * @version 1.1
+ * @author [David Klein, Polarts](https://github.com/Polarts)
+ */
 const LandingPage = () => {
 
     const downIconProps = {
@@ -14,48 +21,34 @@ const LandingPage = () => {
 
     var refs = {
         parent: useRef(null),
-        contactDiv : useRef(null),
-        homeNavLink : useRef(null),
-        aboutNavLink: useRef(null),
-        contactNavLink: useRef(null),
+        contactDiv: useRef(null),
     }
 
-      function switchNavLink(navLink)
-      {
-        var refArr = Object.entries(refs).filter(e => e[0].includes("Nav"));
-        refArr.forEach(r => {
-            if (r[1].current === navLink)
-            {
-                r[1].current.className = styles.navLinkSelected;
-            }
-            else
-            {
-                r[1].current.className = styles.navLinkStatic;
-            }
-        })
-      }
+    var [currentNav, setCurrentNav] = useState("home");
 
-      function handleScroll() {
+    /**
+     * Updated the scroll snap type and current nav location state according to the scroll top offset.
+     */
+    function handleScroll() {        
         if (refs.parent.current.scrollTop >= window.innerHeight) {
             refs.parent.current.style.scrollSnapType = "none";
 
             if (refs.parent.current.scrollTop + window.innerHeight 
                 >= refs.contactDiv.current.offsetTop)
-            {
-                switchNavLink(refs.contactNavLink.current);
+            {                
+                if (currentNav !== "contact") setCurrentNav("contact");
             }
             else
             {
-                switchNavLink(refs.aboutNavLink.current);
+                if (currentNav !== "about") setCurrentNav("about");
             }
 
         }
         else {
             refs.parent.current.style.scrollSnapType = "y mandatory";
-            switchNavLink(refs.homeNavLink.current);
+            if (currentNav !== "home") setCurrentNav("home");
         }
     }
-
 
     useEffect(() => {
         refs.parent.current.addEventListener('scroll', handleScroll, false);
@@ -82,26 +75,8 @@ const LandingPage = () => {
                     </header>
 
                     <main id="about">
-                        <nav>
-                            <a id="homeNav" 
-                                href="#home" 
-                                className={styles.navLinkStatic}
-                                ref={refs.homeNavLink}>
-                                Home
-                            </a>
-                            <a id="aboutNav" 
-                                href="#about" 
-                                className={styles.navLinkStatic}
-                                ref={refs.aboutNavLink}>
-                                About Us
-                            </a>
-                            <a id="contactNav" 
-                                href="#contact" 
-                                className={styles.navLinkStatic}
-                                ref={refs.contactNavLink}>
-                                Contact
-                            </a>
-                        </nav>
+
+                        <NavBar current={currentNav}/>
 
                         <h1 className={styles.aboutHeader}>Developers of Haifa <b>unite!</b></h1>
 
@@ -146,14 +121,20 @@ const LandingPage = () => {
                             className={styles.contactInfo}
                             ref={refs.contactDiv}>
                             <p>
-                                If you're a professional developer or lector, and you'd like to talk or provide content to our meetups, please <b>contact David Klein</b> via <a href="https://www.linkedin.com/in/david-klein-835048161/">LinkedIn</a> or <a href="mailto:davidklein.4496@gmail.com">by Email</a>.
+                                If you're a professional developer or lector, and you'd like to talk or provide content to our meetups, please <b>contact David Klein</b> via <a href="https://www.linkedin.com/in/david-klein-835048161/">LinkedIn</a> or by <a href="mailto:davidklein.4496@gmail.com">Email</a>.
                             </p>
                             <p>
-                                If you're new to development and would like to learn how to code, network with professionals and learn together, join the <a href="https://chat.whatsapp.com/8skL1KY0Nhv1uy3MDYbLIR">freeCodeCamp Haifa WhatsApp group</a> and we'll meet you as soon as our next weekly meetup!
+                                If you're new to development and would like to learn how to code, network with professionals and learn together, join the freeCodeCamp Haifa <a href="https://chat.whatsapp.com/8skL1KY0Nhv1uy3MDYbLIR">WhatsApp group</a> and we'll meet you as soon as our next weekly meetup!
                             </p>
                         </div>
 
                     </main>
+
+                    <footer>
+                        <p>
+                        © 2019 haifa:dev community (non-profit). Landing page content designed and written by David Klein a.k.a Polarts. View this website's source code <a href="https://github.com/haifa-dev/haifa-dev-website">here</a>.
+                        </p>
+                    </footer>
 
                 </div>
             </div>
