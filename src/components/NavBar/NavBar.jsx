@@ -3,13 +3,15 @@ import styles from './NavBar.module.scss';
 
 /**
  * A navigation bar for the wesite.
- * @param {*} props.current The current location the user is navigating through.
+ * @param {string} props.current The current location name the user is navigating through.
+ * @version 1.1
+ * @author [David Klein, Polarts](https://github.com/Polarts)
  */
 const NavBar = (props) =>  {
     
     /**
      * Compares the given name with props.current and returns the proper style.
-     * @param {*} name the name of the nav element the link represents.
+     * @param {*} name the name of the nav location the link represents.
      */
     function linkStyle(name) {
 
