@@ -32,7 +32,7 @@ b {
 
 .mainContainer {
     display: grid;
-    grid-template-rows: 100vh 100vh;
+    grid-template-rows: 100vh auto;
 
     header {
         display: grid;
@@ -132,7 +132,7 @@ b {
 
     main {
         grid-row: 2;
-        scroll-snap-align: center;
+        scroll-snap-align: start;
         
         display: grid;
         grid-template-columns: 1fr 2fr 1fr;
@@ -205,4 +205,10 @@ b {
         }
 
     }
+
+    footer {
+        text-align: center;
+        font-size: 12px;
+    }
+
 }

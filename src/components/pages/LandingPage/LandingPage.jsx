@@ -146,14 +146,20 @@ const LandingPage = () => {
                             className={styles.contactInfo}
                             ref={refs.contactDiv}>
                             <p>
-                                If you're a professional developer or lector, and you'd like to talk or provide content to our meetups, please <b>contact David Klein</b> via <a href="https://www.linkedin.com/in/david-klein-835048161/">LinkedIn</a> or <a href="mailto:davidklein.4496@gmail.com">by Email</a>.
+                                If you're a professional developer or lector, and you'd like to talk or provide content to our meetups, please <b>contact David Klein</b> via <a href="https://www.linkedin.com/in/david-klein-835048161/">LinkedIn</a> or by <a href="mailto:davidklein.4496@gmail.com">Email</a>.
                             </p>
                             <p>
-                                If you're new to development and would like to learn how to code, network with professionals and learn together, join the <a href="https://chat.whatsapp.com/8skL1KY0Nhv1uy3MDYbLIR">freeCodeCamp Haifa WhatsApp group</a> and we'll meet you as soon as our next weekly meetup!
+                                If you're new to development and would like to learn how to code, network with professionals and learn together, join the freeCodeCamp Haifa <a href="https://chat.whatsapp.com/8skL1KY0Nhv1uy3MDYbLIR">WhatsApp group</a> and we'll meet you as soon as our next weekly meetup!
                             </p>
                         </div>
 
                     </main>
+
+                    <footer>
+                        <p>
+                        © 2019 haifa:dev community (non-profit). Landing page content designed and written by David Klein a.k.a Polarts. View this website's source code <a href="https://github.com/haifa-dev/haifa-dev-website">here</a>.
+                        </p>
+                    </footer>
 
                 </div>
             </div>
