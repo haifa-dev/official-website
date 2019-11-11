@@ -39,6 +39,12 @@ const NavBar = (props) =>  {
                 className={linkStyle("contact")}>
                 Contact
             </a>
+
+            <a className={styles.fbLink}
+                href="https://www.facebook.com/groups/haifadev/">
+                <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook"/>
+            </a>
+
         </nav>
     );
 

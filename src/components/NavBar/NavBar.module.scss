@@ -9,3 +9,31 @@
     color: $mainColor;
     text-decoration: underline;
 }
+
+nav {
+    display: flex;
+    flex-direction: row;
+    position: sticky;
+    top: 0;
+    padding-top: 10px;
+    background: white;
+
+    a {
+        font-size: 20px;
+        text-align: center;
+        margin: 0 10px;
+
+        @include media-phone {
+            font-size: 16px;
+        }
+
+    }
+
+    .fbLink {
+        margin-left: auto;
+
+        img {
+            width: 25px;
+        }
+    }
+}
