@@ -5,6 +5,11 @@ import styles from './LandingPage.module.scss';
 
 import NavBar from '../../NavBar/NavBar';
 
+/**
+ * A temporary landing page for the official haifa:dev website.
+ * @version 1.1
+ * @author [David Klein, Polarts](https://github.com/Polarts)
+ */
 const LandingPage = () => {
 
     const downIconProps = {
@@ -21,6 +26,9 @@ const LandingPage = () => {
 
     var [currentNav, setCurrentNav] = useState("home");
 
+    /**
+     * Updated the scroll snap type and current nav location state according to the scroll top offset.
+     */
     function handleScroll() {        
         if (refs.parent.current.scrollTop >= window.innerHeight) {
             refs.parent.current.style.scrollSnapType = "none";
@@ -41,7 +49,6 @@ const LandingPage = () => {
             if (currentNav !== "home") setCurrentNav("home");
         }
     }
-    
 
     useEffect(() => {
         refs.parent.current.addEventListener('scroll', handleScroll, false);
