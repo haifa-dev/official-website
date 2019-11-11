@@ -1,8 +1,16 @@
 import React from 'react';
 import styles from './NavBar.module.scss';
 
+/**
+ * A navigation bar for the wesite.
+ * @param {*} props.current The current location the user is navigating through.
+ */
 const NavBar = (props) =>  {
     
+    /**
+     * Compares the given name with props.current and returns the proper style.
+     * @param {*} name the name of the nav element the link represents.
+     */
     function linkStyle(name) {
 
         if (name === props.current) {
