@@ -49,7 +49,7 @@
         }
 
         .cardHeader {
-            bottom: 65%;
+            bottom: 70%;
 
             // header underline on hover
             &:before,
@@ -76,9 +76,13 @@
         transition: .6s ease;
         opacity: 0;
         position: absolute;
-        bottom: 15%;
+        bottom: 10%;
         margin-left: 5%;
         margin-right: 5%;
+        text-decoration: none;
+        color: black;
+        font-size: 0.9rem;
+
     }
 
     .cardHeader {
@@ -89,6 +93,10 @@
         transition: .2s ease;
         letter-spacing: 1.3px;
         font-weight: 400;
+        text-decoration: none;
+        color: black;
+        font-weight: 400;
+        font-size: 1.3rem;
 
         // header underline initial
         &:before,
@@ -106,24 +114,43 @@
         }
     }
 
+    .cardIcon {
+        margin-left: 10px;
+        max-height: 32px;
+        max-width: 32px;
+    }
+
 }
 
 /************************ media ************************/
 
-@media only screen and (min-width: 1600px) {
+@media only screen and (min-width: 1500px) {
     .card {
         &:hover {
+
             .cardHeader {
-                bottom: 60%;
+                bottom: 70%;
             }
         }
 
         .cardContent {
-            bottom: 25%;
+            bottom: 20%;
         }
-
     }
 }
+
+@media only screen and (max-width: 1300px) {
+    .card {
+        &:hover {
+
+            .cardHeader {
+                bottom: 80%;
+            }
+        }
+    }
+
+}
+
 
 @media only screen and (max-width: 1200px) {
     .card {
@@ -131,6 +158,57 @@
         margin: 2%;
         max-width: 46%;
         height: 20%;
+
+        &:hover {
+
+            .cardHeader {
+                bottom: 70%;
+            }
+        }
+
+        .cardContent {
+            bottom: 5%;
+        }
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .card {
+        flex: 1 0 46%;
+        margin: 2%;
+        max-width: 46%;
+        height: 20%;
+
+        &:hover {
+
+            .cardHeader {
+                bottom: 65%;
+            }
+        }
+
+        .cardContent {
+            bottom: 15%;
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .card {
+        flex: 1 0 46%;
+        margin: 2%;
+        max-width: 46%;
+        height: 20%;
+
+        &:hover {
+
+            .cardHeader {
+                bottom: 70%;
+            }
+        }
+
+        .cardContent {
+            bottom: 5%;
+        }
     }
 }
 
@@ -138,11 +216,34 @@
 @media only screen and (max-width: 840px) {
     .card {
         flex: 1 0 80%;
-        margin: 2% 10%;
-        max-width: 80%;
-        height: 20%;
+        margin: 2% auto;
+        max-width: 70%;
+
+
+        &:hover {
+            .cardHeader {
+                bottom: 70%;
+            }
+        }
+
+        .cardHeader {
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        .cardContent {
+            margin-left: 10%;
+            margin-right: 10%;
+            bottom: 18%;
+            font-size: 1rem;
+        }
     }
+
+
 }
+
+
+
 
 
 
