@@ -1,12 +1,160 @@
-$mainColor: green;
-$secondaryColor: #272727;
 
-@mixin media-phone {
-    @media only screen and (max-width: 450px) {
-        @content;
-    }
+@import 'variables_functions_mixins';
+@import 'reset.scss';
+
+
+
+body {
+    margin: 0;
+    padding:  55px 0 0 0 ;
+    color:#333;
+      font-family: "Helvetica";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+
+  
+.bg-main{
+    background-color: #28b485;
+  }
+  .bg-secondary{
+    // background-color: #272727;
+    // background-color: #333;
+  }
+
+  .fixed-top{
+    position: fixed;
+    top: 0;
+    right:0;
+    left:0;
+    z-index: 1;
+  }
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-b {
-    color: $mainColor;
+
+.container{
+  max-width: 60rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+.home{
+ 
+  h2{
+    text-align: center;
+    b{
+      color: $mainColor;
+      font-weight: bold;
+    } 
+  }
+  article{
+    margin: 15px 0;
+  }
+
+  p{
+    font-size: 18px;
+    line-height: 32px;
+  }
+}
+
+.jambo{
+  padding: 1rem;
+  height: 15rem;
+  background-position: 60% 80%;
+  background-image: linear-gradient(rgba(51, 51, 51, 0.9), rgba(51, 51, 51, 0.9)), url('./../img/2172554.jpg');
+  // https://www.freepik.com/free-vector/technology-background_4104991.htm#page=2&query=technology+digital&position=18
+}
+
+.landing-page{
+    color: white;
+    position: relative;
+    text-align: center; 
+    font-weight: 300;
+    margin: auto;
+    h1{
+      color: $mainColor;
+      font-size: 60px;
+      // fix: font-weight h1 and h4;
+      font-weight: inherit;
+      position: absolute;
+      top:50px;
+      left: 0;
+      right: 0;
+      span{
+        color: white;
+      }
+    }
+
+    h4{
+      position: absolute;
+      // fix: font-weight h1 and h4;
+      font-weight: inherit;
+      top:115px;
+      left: 0;
+      right: 0;
+    }
+    // &:hover{
+    //   background-color: $mainColor;
+    //   h1{
+    //     color: white;
+    //   }
+    // }
+}
+
+
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+  margin: 25px 0  10px;
+}
+
+.bg-pink{
+  background-color: pink;
+}
+
+
+footer{
+  color: white;
+  padding: 30px;
+  text-align: center;
+  background-color: green;
+  // opacity: 0.8;
 }
