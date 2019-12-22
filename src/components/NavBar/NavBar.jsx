@@ -3,7 +3,7 @@ import styles from './NavBar.module.scss';
 
 /**
  * A navigation bar for the wesite.
- * @param {string} props.current The current location name the user is navigating through.
+ * @param {String} props.current The current location name the user is navigating through.
  * @version 1.1
  * @author [David Klein, Polarts](https://github.com/Polarts)
  */

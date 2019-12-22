@@ -3,7 +3,7 @@ import React  from 'react';
 /**
  * Footer elements.
  * @version 1.1
- * @author [Dnku Mekonen, dnku](https://github.com/dnku     )
+ * @author [Dnku Mekonen, dnku](https://github.com/dnku)
  */
 
 const Footer = (props) =>  {
