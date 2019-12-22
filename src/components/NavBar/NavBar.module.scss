@@ -1,11 +1,29 @@
-@import './src/stylesheets/global.scss';
+@import '../../stylesheets/variables_functions_mixins';
 
-.navLinkStatic {
-    color: $secondaryColor;
-    text-decoration: none;
-}
+nav {
+    display: flex;
+    flex-direction: row;
+    a {
+        font-size: 20px;
+        text-align: center;
+        padding: 1rem;
+        color: white;
+        text-decoration: none;
+        border-bottom:0.2rem solid transparent;
+        @include media-phone {
+            font-size: 16px;
+        }
+    }
 
-.navLinkSelected {
-    color: $mainColor;
-    text-decoration: underline;
+    a:hover{
+        border-bottom:0.2rem solid green;
+    }
+
+    .fbLink {
+        margin-left: auto;
+
+        img {
+            width: 25px;
+        }
+    }
 }

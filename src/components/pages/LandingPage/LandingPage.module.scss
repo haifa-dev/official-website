@@ -122,31 +122,6 @@
         nav {
             grid-column: 1 / span 3;
             grid-row: 1;
-            display: flex;
-            flex-direction: row;
-            position: sticky;
-            top: 0;
-            padding-top: 10px;
-            background: white;
-
-            a {
-                font-size: 20px;
-                text-align: center;
-                margin: 0 10px;
-
-                @include media-phone {
-                    font-size: 14px;
-                }
-
-            }
-
-            #homeNav {
-                grid-column: 1;
-            }
-
-            #aboutNav {
-                grid-column: 2;
-            }
         }
 
         h1 {
