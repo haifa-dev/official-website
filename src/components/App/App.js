@@ -1,11 +1,14 @@
 import React from 'react';
+
+//import './App.css';
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import NavBar from '../NavBar/NavBar'
+
+import NavBar from  '../NavBar/NavBar'
 import Home from '../Pages/Home/Home'
 import Project from '../Pages/Project/Project'
+import Footer from '../Footer/Footer'
+import NotFoundPage  from '../Pages/NotFoundPage/NotFoundPage'
 import TempPageTestCardsGrid from '../TeamCardsGrid/TempPageTestCardsGrid'
-import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage'
-import './App.css';
 
 
 const Routes = () => (
@@ -20,11 +23,13 @@ const Routes = () => (
 
 const App = () => (
   <BrowserRouter>
-    <div>
-      <NavBar></NavBar>
-      <Routes />
+    <div className="fixed-top bg-secondary">
+      <div className="container">
+        <NavBar></NavBar>
+      </div>
     </div>
-
+    <Routes />
+    <Footer /> 
   </BrowserRouter>
 )
 

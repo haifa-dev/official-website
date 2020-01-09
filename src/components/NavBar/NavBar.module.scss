@@ -1,32 +1,22 @@
-@import './src/stylesheets/global.scss';
-
-.navLinkStatic {
-    color: $secondaryColor;
-    text-decoration: none;
-}
-
-.navLinkSelected {
-    color: $mainColor;
-    text-decoration: underline;
-}
+@import '../../stylesheets/variables_functions_mixins';
 
 nav {
     display: flex;
     flex-direction: row;
-    position: sticky;
-    top: 0;
-    padding-top: 10px;
-    background: white;
-
     a {
         font-size: 20px;
         text-align: center;
-        margin: 0 10px;
-
+        padding: 1rem;
+        color: white;
+        text-decoration: none;
+        border-bottom:0.2rem solid transparent;
         @include media-phone {
             font-size: 16px;
         }
+    }
 
+    a:hover{
+        border-bottom:0.2rem solid green;
     }
 
     .fbLink {
