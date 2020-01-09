@@ -8,13 +8,15 @@ import Home from '../Pages/Home/Home'
 import Project from '../Pages/Project/Project'
 import Footer from '../Footer/Footer'
 import NotFoundPage  from '../Pages/NotFoundPage/NotFoundPage'
+import TempPageTestCardsGrid from '../TeamCardsGrid/TempPageTestCardsGrid'
 
 
-const Routes = () => ( 
+const Routes = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route exact path="/projects/:id" component={Project} />
     <Route exact path="/project" component={Project} />
+    <Route exact path="/temp_test_card_grid" component={TempPageTestCardsGrid} />
     <Route exact path="*" component={NotFoundPage} />
   </Switch>
 )
