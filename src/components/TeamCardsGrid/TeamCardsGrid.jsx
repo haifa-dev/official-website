@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useReducer, useState, useEffect, useRef } from 'react'
 
 import SingleCard from './SingleCard';
 import styles from './TeamCardsGrid.module.scss'
@@ -11,6 +11,8 @@ import styles from './TeamCardsGrid.module.scss'
  */
 
 const CardsGrid = () => {
+
+    // #region members
 
     const [membersList, setMembersList] = useState([{
         id: 1,
@@ -37,11 +39,13 @@ const CardsGrid = () => {
         linkedinLink: "https://www.linkedin.com/"
     }])
 
-    const teamCardsRef = useRef(null);
-    const [perLoad] = useState(3);
-    const [total, setTotal] = useState(0)
-    const [isFetching, setIsFetching] = useState(false);
+    // #endregion
 
+    const teamCardsRef = useRef(null);
+    
+    const [perLoad] = useState(3);
+    const [total, setTotal] = useState(0);
+    const [isFetching, setIsFetching] = useState(false);
 
 
     const handleScroll = () => {
@@ -219,14 +223,6 @@ const CardsGrid = () => {
                     githubLink: "https://github.com/explore",
                     linkedinLink: "https://www.linkedin.com/"
                 },
-                {
-                    id: 24,
-                    name: "member 24",
-                    about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-                    img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-                    githubLink: "https://github.com/explore",
-                    linkedinLink: "https://www.linkedin.com/"
-                },
             ]
             const temp = []
             for (let i = total; i < total + perLoad; i++) {
@@ -261,17 +257,23 @@ const CardsGrid = () => {
             <div className={styles.tempContainer}>
                 <div className={styles.listContainer} ref={teamCardsRef}>
                     {membersList.map((member, index) =>
-                        <SingleCard id={member.id} name={member.name} about={member.about} img={member.img} githubLink={member.githubLink} linkedinLink={member.linkedinLink} key={`${index}${member.name}`} />
+                        <SingleCard
+                            id={member.id}
+                            name={member.name}
+                            about={member.about}
+                            img={member.img}
+                            githubLink={member.githubLink}
+                            linkedinLink={member.linkedinLink}
+                            key={`${index}${member.name}`}
+                        />
                     )}
-                    {/* fetching more data loading animation*/}
-
                 </div>
-                {isFetching ? <h2 className={styles.animate}>Loading</h2> : null}
+                {/* fetching more data loading animation*/}
+                {isFetching ? <span className={styles.animate}>Loading</span> : null}
             </div>
         </>
 
     );
 }
-
 export default CardsGrid;
 
