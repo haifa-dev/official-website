@@ -3,7 +3,7 @@ import React from 'react';
 
 const Home = () => {
   return (
-   <div className="home"> 
+   <div className="home" id="home"> 
       <div className="jambo bg-secondary">
       <div className="landing-page">
         <h1>haifa<span>:dev</span></h1>
@@ -15,7 +15,7 @@ const Home = () => {
       Developers of Haifa <b>unite!</b>
     </h2>
 
-    <article >
+    <article id="about">
         <h4>Who are we?</h4>
         <p>
             We're an enthusiastic group of developers from Haifa. Some of us are professionals, some are still learning, but all of us agree upon one thing: Haifa offers barely enough for local developers to thrive.
@@ -25,7 +25,7 @@ const Home = () => {
         </p>
     </article>
 
-    <article >
+    <article>
         <h4>What do we want?</h4>
         <p>
             We want our careers to thrive in the city we call home.
@@ -36,21 +36,24 @@ const Home = () => {
 
     </article>
 
-    <article >
+    <article>
         <h4>How do we do that?</h4>
         <p>
-            We've partnered with <a href="http://www.haifa24.co.il/%D7%91%D7%95%D7%A8%D7%9C%D7%90_17_-_%D7%94%D7%97%D7%9E%D7%9E%D7%94_%D7%9C%D7%A7%D7%A8%D7%99%D7%99%D7%A8%D7%94">Burla 17</a> as a host for our professional meetups. We're bringing professional developers and lectors from all around the country to provide top quality content to our dearest Haifa developers.
+            We're establishing partnership with local companies and office complexes as hosts for our professional meetups. We're bringing professional developers and lectors from all around the country to provide top quality content to our dearest Haifa developers.
         </p>
         <p>
             For beginners and students, we've partnered with <a href="http://www3.haifa.muni.il/inventuipub/">In-Vent</a> to establish weekly study group meetups in association with the <a href="https://www.freecodecamp.org/">freeCodeCamp</a> non-profit organization.
         </p>
     </article>
 
-    <h2 >Let's get in touch.</h2>
 
     <article>
+        <h2 id="contact">Let's get in touch.</h2>
         <p>
-            If you're a professional developer or lector, and you'd like to talk or provide content to our meetups, please <b>contact David Klein</b> via <a href="https://www.linkedin.com/in/david-klein-835048161/">LinkedIn</a> or by <a href="mailto:davidklein.4496@gmail.com">Email</a>.
+            If you'd like to provide us with a lecture, host our next meetup, or help us improve our website, please <b>contact David Klein</b> via <a href="https://www.linkedin.com/in/david-klein-835048161/">LinkedIn</a> or by <a href="mailto:davidklein.4496@gmail.com">Email</a>.
+        </p>
+        <p>
+            We welcome you to join us on <a href="https://chat.whatsapp.com/G26LTepUrpT2W3GS26mpoo">WhatsApp</a> & <a href="https://www.facebook.com/groups/haifadev/">Facebook</a>, and follow our meetup announcements as member of our <a href="https://www.meetup.com/Haifa-dev/">Meetup group</a>.
         </p>
         <p>
             If you're new to development and would like to learn how to code, network with professionals and learn together, join the freeCodeCamp Haifa <a href="https://chat.whatsapp.com/8skL1KY0Nhv1uy3MDYbLIR">WhatsApp group</a> and we'll meet you as soon as our next weekly meetup!
