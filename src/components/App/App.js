@@ -1,6 +1,5 @@
 import React from 'react';
-
-//import './App.css';
+import { useParams } from 'react-router';
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 
 import NavBar from  '../NavBar/NavBar'
