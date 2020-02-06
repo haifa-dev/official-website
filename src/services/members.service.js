@@ -167,6 +167,7 @@ const members = [
 
 /**
  * Gets the members, filters with a query object.
+ * @author [David Klein, Polarts](https://github.com/Polarts)
  * 
  * @param {Number} perPage the number of members per page
  * @param {Number} page the current page index, starting with 0
@@ -176,7 +177,7 @@ const members = [
  * @return promise of an array of members, enclosed in pagination.
  */
 export const getMembersAsync = ({ perPage, page, id, name }) => new Promise((result) => {
-    
+
     if (id) {
         result(members.find(m => m.id === id)[0]);
     }
@@ -197,10 +198,11 @@ export const getMembersAsync = ({ perPage, page, id, name }) => new Promise((res
     var startIndex = page * perPage;
 
     if (startIndex >= members.length) {
-        setTimeout(() => result(members), 3500);
+        //setTimeout(() => result(members), 3500);
+        result(false);
     }
     else {
-        setTimeout(() => result(members.slice(startIndex, startIndex + perPage)))
+        setTimeout(() => result(members.slice(startIndex, startIndex + perPage)), 3500);
     }
 
 });
