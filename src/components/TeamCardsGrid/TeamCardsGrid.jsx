@@ -22,7 +22,7 @@ const CardsGrid = () => {
 
     const teamCardsRef = useRef(null);
     
-    const [perPage] = useState(3);
+    const [perPage] = useState(4);
     const [currentPage, setCurrentPage] = useState(0);
     const [isFetching, setIsFetching] = useState(true);
     const [isDoneFetching, setIsDoneFetching] = useState(false);
@@ -38,7 +38,7 @@ const CardsGrid = () => {
     };
 
     const loadMore = async () => {
-        var res = await getMembersAsync({perPage: perPage, page: currentPage + 1});
+        var res = await getMembersAsync({perPage: perPage, page: currentPage});
         if (res) {
             setCurrentPage(currentPage + 1);
             setMembersList(membersList => [...membersList, ...res]);
@@ -68,25 +68,23 @@ const CardsGrid = () => {
 
     // TODO: remove temp container div after permanent page embedding
     return (
-        <>
-            <div className={styles.tempContainer}>
-                <div className={styles.listContainer} ref={teamCardsRef}>
-                    {membersList.map((member, index) =>
-                        <SingleCard
-                            id={member.id}
-                            name={member.name}
-                            about={member.about}
-                            img={member.img}
-                            githubLink={member.githubLink}
-                            linkedinLink={member.linkedinLink}
-                            key={`${index}${member.name}`}
-                        />
-                    )}
-                </div>
-                {/* fetching more data loading animation*/}
-                {isDoneFetching? null : isFetching ? <span className={styles.animate}>Loading</span> : null}
+        <div className={styles.container}>
+            <div className={styles.listContainer} ref={teamCardsRef}>
+                {membersList.map((member, index) =>
+                    <SingleCard
+                        id={member.id}
+                        name={member.name}
+                        about={member.about}
+                        img={member.img}
+                        githubLink={member.githubLink}
+                        linkedinLink={member.linkedinLink}
+                        key={`${index}${member.name}`}
+                    />
+                )}
             </div>
-        </>
+            {/* fetching more data loading animation*/}
+            {isDoneFetching? null : isFetching ? <span className={styles.animate}>Loading</span> : null}
+        </div>
 
     );
 }

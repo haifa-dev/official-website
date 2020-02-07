@@ -42,12 +42,26 @@ const NavBar = (props) =>  {
                 Contact
             </a>
 
-            {/* <a className={styles.fbLink}
-                href="https://www.facebook.com/groups/haifadev/">
-                <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook"/>
-            </a> */}
+            <a id="teamNav"
+                href="#team"
+                className={linkStyle("team")}>
+                Our Team
+            </a>
+
+            <div className={styles.externalLinks}>
+                <a href="https://www.facebook.com/groups/haifadev/" target="_blank" rel="noopener noreferrer">
+                    <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook"/>
+                </a>
+                <a href="https://chat.whatsapp.com/G26LTepUrpT2W3GS26mpoo" target="_blank" rel="noopener noreferrer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Whatsapp_logo_svg.png" alt="WhatsApp"/>
+                </a>
+                <a href="https://www.meetup.com/Haifa-dev" target="_blank" rel="noopener noreferrer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Meetup_Logo.png/626px-Meetup_Logo.png" alt="Meetup"/>
+                </a>
+            </div>
+
         </nav>
-    );
+    ); 
 }
 
 export default NavBar;

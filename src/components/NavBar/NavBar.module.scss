@@ -19,8 +19,10 @@ nav {
         border-bottom:0.2rem solid green;
     }
 
-    .fbLink {
+    .externalLinks {
         margin-left: auto;
+        display: flex;
+        justify-content: flex-end;
 
         img {
             width: 25px;
