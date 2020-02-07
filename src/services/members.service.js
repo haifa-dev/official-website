@@ -2,164 +2,28 @@
 const members = [
 
     {
-        id: 4,
-        name: "member 4",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
+        id: 0,
+        name: "David Klein",
+        about: "Founder of Haifa:Dev, Front-End Engineer, and project director of the Haifa:Dev website.",
+        img: "https://media-exp1.licdn.com/dms/image/C4E03AQHcOISNKjdNag/profile-displayphoto-shrink_200_200/0?e=1586390400&v=beta&t=fZ1fTcW-A-a91oIq2BPRrE3APpE_2yvY83mP-m6y25Q",
+        githubLink: "https://github.com/Polarts",
+        linkedinLink: "https://www.linkedin.com/in/david-klein-835048161/"
     },
     {
-        id: 5,
-        name: "member 5",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
+        id: 1,
+        name: "Guy Sarkinsky",
+        about: "Founder and organizer of Haifa:Dev. Full-stack developer.",
+        img: "https://secure.meetupstatic.com/photos/member/9/f/c/c/highres_296680908.jpeg",
+        githubLink: "https://github.com/GuySarkinsky",
+        linkedinLink: "https://www.linkedin.com/in/sergey-sarkinsky/"
     },
     {
-        id: 6,
-        name: "member 6",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 7,
-        name: "member 7",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 8,
-        name: "member 8",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 9,
-        name: "member 9",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 10,
-        name: "member 10",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 11,
-        name: "member 11",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 12,
-        name: "member 12",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 13,
-        name: "member 13",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 14,
-        name: "member 14",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 15,
-        name: "member 15",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 16,
-        name: "member 16",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 17,
-        name: "member 17",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 18,
-        name: "member 18",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 19,
-        name: "member 19",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 20,
-        name: "member 20",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 21,
-        name: "member 21",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 22,
-        name: "member 22",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
-    },
-    {
-        id: 23,
-        name: "member 23",
-        about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Integer ornare hendrerit.",
-        img: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-        githubLink: "https://github.com/explore",
-        linkedinLink: "https://www.linkedin.com/"
+        id: 2,
+        name: "Tomer Matmon",
+        about: "Aspiring web developer. Founder of Haifa:Dev developer’s community.",
+        img: "https://secure.meetupstatic.com/photos/member/a/c/d/highres_295322765.jpeg",
+        githubLink: "https://github.com/Tomer51m",
+        linkedinLink: "https://www.linkedin.com/in/tomermatmon/"
     },
 ];
 
@@ -197,12 +61,12 @@ export const getMembersAsync = ({ perPage, page, id, name }) => new Promise((res
     // calculate the index at which we should start getting items.
     var startIndex = page * perPage;
 
-    if (startIndex >= members.length) {
+    if (startIndex > members.length) {
         //setTimeout(() => result(members), 3500);
         result(false);
     }
     else {
-        setTimeout(() => result(members.slice(startIndex, startIndex + perPage)), 3500);
+        setTimeout(() => result(members.slice(startIndex, startIndex + perPage)), 1500);
     }
 
 });

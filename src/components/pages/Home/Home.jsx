@@ -1,6 +1,13 @@
 
 import React from 'react';
+import TeamCardsGrid from '../../TeamCardsGrid/TeamCardsGrid';
 
+/**
+ * The home page.
+ * 
+ * @author [David Klein, Polarts](https://github.com/Polarts)
+ * @author [Dnku Mekonen](https://github.com/Dnku)
+ */
 const Home = () => {
   return (
    <div className="home" id="home"> 
@@ -59,6 +66,11 @@ const Home = () => {
             If you're new to development and would like to learn how to code, network with professionals and learn together, join the freeCodeCamp Haifa <a href="https://chat.whatsapp.com/8skL1KY0Nhv1uy3MDYbLIR">WhatsApp group</a> and we'll meet you as soon as our next weekly meetup!
         </p>
     </article>
+
+    <div>
+        <h2 id="team">Meet our team members:</h2>
+        <TeamCardsGrid/>
+    </div>
 
     </div>    
    </div>
