@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './TeamCardsGrid.module.scss';
+import styles from './SingleCard.module.scss';
 import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
