@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './NavBar.module.scss';
 
 /**
@@ -8,47 +8,47 @@ import styles from './NavBar.module.scss';
  * @author [David Klein, Polarts](https://github.com/Polarts)
  */
 const NavBar = (props) =>  {
+
+    const [isSocialOpen, setSocialOpen] = useState(false);
     
-    /**
-     * Compares the given name with props.current and returns the proper style.
-     * @param {*} name the name of the nav location the link represents.
-     */
-    function linkStyle(name) {
-
-        if (name === props.current) {
-            return styles.navLinkSelected;
-        }
-
-        return styles.navLinkStatic
-    }
-
     return (
         <nav>
             <a id="homeNav" 
-                href="#home" 
-                className={linkStyle("home")}>
-                Home
+                href="#home">
+                <span>
+                    Home
+                </span>
             </a>
             
             <a id="aboutNav" 
-                href="#about" 
-                className={linkStyle("about")}>
-                About Us
+                className={styles.aboutNav}
+                href="#about">
+                <span>
+                    About Us
+                </span>
             </a>
 
             <a id="contactNav" 
-                href="#contact" 
-                className={linkStyle("contact")}>
-                Contact
+                href="#contact">
+                <span>
+                    Contact
+                </span>
             </a>
 
             <a id="teamNav"
-                href="#team"
-                className={linkStyle("team")}>
-                Our Team
+                className={styles.teamNav}
+                href="#team">
+                <span>
+                    Our Team
+                </span>
             </a>
 
-            <div className={styles.externalLinks}>
+            <img className={styles.socialButton} 
+                 src={require('../../img/social-icon.png')} 
+                 alt="Social"
+                 onClick={() => setSocialOpen(!isSocialOpen)}/>
+
+            <div className={styles.externalLinks} style={isSocialOpen? {display: 'flex'} : null}>
                 <a href="https://www.facebook.com/groups/haifadev/" target="_blank" rel="noopener noreferrer">
                     <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook"/>
                 </a>
