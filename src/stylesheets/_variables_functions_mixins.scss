@@ -8,3 +8,15 @@ $secondaryColor: #272727;
         @content;
     }
 }
+
+@mixin media-tablet {
+    @media only screen and (max-width: 640px) {
+        @content;
+    }
+}
+
+@mixin media-phone-small {
+    @media only screen and (max-width: 320px) {
+        @content;
+    }
+}
