@@ -3,6 +3,7 @@
 nav {
   display: flex;
   flex-direction: row;
+  height: 64px;
 
   a {
     font-size: 20px;
@@ -46,6 +47,7 @@ nav {
     margin-left: auto;
     display: flex;
     justify-content: flex-end;
+    height: 64px;
 
     img {
       width: 25px;
