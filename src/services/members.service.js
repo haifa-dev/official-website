@@ -1,13 +1,67 @@
 
-const members = [
+/**
+ * @typedef {object} Member
+ * @property {number} id
+ * @property {string} name
+ * @property {string} about
+ * @property {string} img
+ * @property {string} [githubLink]
+ * @property {string} [linkedinLink]
+ */
 
+/**
+ * Get members in a paginated manner
+ * 
+ * @param {number} perPage the number of members per page
+ * @param {number} page the current page index, starting with 0
+ * 
+ * @return {Promise<Member[]>} of an array of members
+ */
+export async function getMembers({ perPage = members.length, page = 0 } = {}) {    
+    const startIndex = page * perPage;
+
+    if (startIndex > members.length) {
+        return [];
+    }
+    return members.slice(startIndex, startIndex + perPage);
+};
+
+/**
+ * Find a member by id
+ * 
+ * @param {number} id the id to get
+ *
+ * @return {Promise<Member>} of member if exists, otherwise null
+ */
+export async function getMemberById(id) {
+    return members.find(m => m.id === id)[0] || null;
+}
+
+/**
+ * Search members by their name
+ * 
+ * @param {string} name the name to search
+ *
+ * @return {Promise<Member[]>} array of fitting members. empty array if none found
+ */
+export async function searchMembersByName(name) {
+    name = name.toLowerCase();
+    return members.find(m => m.name.toLowerCase().includes(name));
+}
+
+// #endregion
+
+/**
+ * @type Member[]
+ */
+const members = [
     {
         id: 0,
         name: "David Klein",
         about: "Founder of Haifa:Dev, Front-End Engineer, and project director of the Haifa:Dev website.",
         img: "https://media-exp1.licdn.com/dms/image/C4E03AQHcOISNKjdNag/profile-displayphoto-shrink_200_200/0?e=1586390400&v=beta&t=fZ1fTcW-A-a91oIq2BPRrE3APpE_2yvY83mP-m6y25Q",
         githubLink: "https://github.com/Polarts",
-        linkedinLink: "https://www.linkedin.com/in/david-klein-835048161/"
+        linkedinLink: "https://www.linkedin.com/in/david-klein-835048161/",
     },
     {
         id: 1,
@@ -26,50 +80,3 @@ const members = [
         linkedinLink: "https://www.linkedin.com/in/tomermatmon/"
     },
 ];
-
-// #region get functions
-
-/**
- * Gets the members, filters with a query object.
- * @author [David Klein, Polarts](https://github.com/Polarts)
- * 
- * @param {Number} perPage the number of members per page
- * @param {Number} page the current page index, starting with 0
- * @param {Number} id the id to get
- * @param {String} name the name to search
- * 
- * @return promise of an array of members, enclosed in pagination.
- */
-export const getMembersAsync = ({ perPage, page, id, name }) => new Promise((result) => {
-
-    if (id) {
-        result(members.find(m => m.id === id)[0]);
-    }
-    
-    if (name) {
-        result(members.find(m => m.name.includes(name)));
-    }
-
-    if (!page) {
-        page = 0;
-    }
-
-    if (!perPage) {
-        perPage = members.length;
-    }
-
-    // calculate the index at which we should start getting items.
-    var startIndex = page * perPage;
-
-    if (startIndex > members.length) {
-        //setTimeout(() => result(members), 3500);
-        result(false);
-    }
-    else {
-        setTimeout(() => result(members.slice(startIndex, startIndex + perPage)), 1500);
-    }
-
-});
-
-// #endregion
-
