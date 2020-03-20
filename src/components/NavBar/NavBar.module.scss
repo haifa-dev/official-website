@@ -1,105 +1,109 @@
 @import '../../stylesheets/variables_functions_mixins';
 
 nav {
+  display: flex;
+  flex-direction: row;
+
+  a {
+    font-size: 20px;
+    text-align: center;
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+
+    @include media-phone {
+      font-size: 16px;
+    }
+
+    @include media-phone-small {
+      font-size: 12px;
+    }
+
+    &:hover {
+      border-bottom: 0.2rem solid green;
+    }
+  }
+
+  .socialButton {
+    /* Only appears in tablet media. */
+    display: none;
+    margin: auto 0 auto auto;
+    padding-bottom: 10px;
+    height: 30px;
+    width: auto;
+
+    @include media-tablet {
+      display: block;
+    }
+
+    @include media-phone-small {
+      height: 20px;
+      padding-bottom: 5px;
+    }
+  }
+
+  .externalLinks {
+    margin-left: auto;
     display: flex;
-    flex-direction: row;
-    a {
-        font-size: 20px;
-        text-align: center;
-        padding: 1rem;
-        color: white;
-        text-decoration: none;
-        
-        @include media-phone {
-            font-size: 16px;
-        }
+    justify-content: flex-end;
 
-        @include media-phone-small {
-            font-size: 12px;
-        }
+    img {
+      width: 25px;
 
-        &:hover{
-            border-bottom:0.2rem solid green;
-        }
-    }
-
-    .socialButton {
-        /* Only appears in tablet media. */
-        display: none;
-        margin: auto 0 auto auto;
-        padding-bottom: 10px;
-        height: 30px;
-        width: auto;
-
-        @include media-tablet {
-            display: block;
-        }
-
-        @include media-phone-small {
-            height: 20px;
-            padding-bottom: 5px;
-        }
-    }
-
-    .externalLinks {
-        margin-left: auto;
-        display: flex;
-        justify-content: flex-end;
-
-        img {
-            width: 25px;
-
-            @include media-phone-small {
-                width: 18px;
-            }
-        }
-
-        @include media-tablet {
-            display: none; /* will be changed via JS */
-
-            position: absolute;
-            right: 0;
-            top: 105%; /* appear under the nav bar, as if it's an extension */
-            background-color: lighten($color: $secondaryColor, $amount: 10);
-
-            &::before {
-                content: '';
-                position: absolute;
-                right: 0;
-                top: -15px;
-                transform: translateX(-50%); /* center upon its own size */
-
-                /* #region CSS triangle up */
-                width: 0; 
-                height: 0; 
-                border-left: 15px solid transparent;
-                border-right: 15px solid transparent;
-                border-bottom: 15px solid lighten($color: $secondaryColor, $amount: 10);
-                /* #endregion */
-            }
-        }
+      @include media-phone-small {
+        width: 18px;
+      }
     }
 
     @include media-tablet {
-        /*
-        * When this media kicks in, the pseudo-elements will replace the spans.
-        * This is done when the content needs to be replaced in response to size.
-        */
-        .aboutNav {
-            span {
-                display: none;
-            }
-            &::after {
-                content: 'About';
-            }
-        }
-        .teamNav {
-            span {
-                display: none;
-            }
-            &::after {
-                content: 'Team';
-            }
-        }
+      display: none; /* will be changed via JS */
+
+      position: absolute;
+      right: 0;
+      top: 105%; /* appear under the nav bar, as if it's an extension */
+      background-color: lighten($color: $secondaryColor, $amount: 10);
+
+      &::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: -15px;
+        transform: translateX(-50%); /* center upon its own size */
+
+        /* #region CSS triangle up */
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid lighten($color: $secondaryColor, $amount: 10);
+        /* #endregion */
+      }
     }
+  }
+
+  @include media-tablet {
+    /*
+     * When this media kicks in, the pseudo-elements will replace the spans.
+     * This is done when the content needs to be replaced in response to size.
+     */
+    .aboutNav {
+      span {
+        display: none;
+      }
+
+      &::after {
+        content: 'About';
+      }
+    }
+
+    .teamNav {
+      span {
+        display: none;
+      }
+
+      &::after {
+        content: 'Team';
+      }
+    }
+  }
 }
