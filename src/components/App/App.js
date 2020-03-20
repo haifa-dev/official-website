@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import NavBar from '../NavBar/NavBar';
-import Home from '../Pages/Home/Home';
-import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage';
-import Project from '../Pages/Project/Project';
+import Home from '../pages/Home/Home';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+import Project from '../pages/Project/Project';
 import TeamCardsGrid from '../TeamCardsGrid/TeamCardsGrid';
 
 const Routes = () => (
