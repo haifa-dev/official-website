@@ -5,14 +5,18 @@ export const useMembersList = () => {
   const [membersList, setMembersList] = useState([])
   const [perPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(0);
-  const [loading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [lastPageReached, setLastPageReached] = useState(false);
 
-  const loadMore = useCallback(() => setIsLoading(true), []);
+  const loadMore = useCallback(() => {
+    if (!lastPageReached) {
+      setLoading(true)
+    }
+  }, [lastPageReached]);
 
   const loadAnotherPage = useCallback(async () => {
     const res = await getMembers({ perPage, page: currentPage });
-    setIsLoading(false);
+    setLoading(false);
     if (res.length > 0) {
       setCurrentPage(currentPage + 1);
       setMembersList(membersList => [...membersList, ...res]);
