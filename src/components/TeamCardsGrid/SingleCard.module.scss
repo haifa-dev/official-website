@@ -1,217 +1,198 @@
 @import './src/stylesheets/global.scss';
 
 .card {
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-clip: border-box;
-    flex: 1 0 31%;
-    margin: 1.15%;
-    min-width: 200px;
-    min-height: 210px;
-    max-width: 200px;
-    max-height: 210px;
-    border-radius: 5px;
-    overflow: hidden;
-    cursor: default;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  flex: 1 0 31%;
+  margin: 1.15%;
+  min-width: 200px;
+  min-height: 210px;
+  max-width: 200px;
+  max-height: 210px;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: default;
 
-
-    &:hover {
-        .cardContent {
-            opacity: 1;
-        }
-
-        .cardImg {
-            opacity: 0.3;
-        }
-
-        .cardHeader {
-            bottom: 70%;
-            color: black;
-            filter: none;
-
-            // header underline on hover
-            &:before,
-            &:after {
-                width: 100%;
-                opacity: 1;
-            }
-        }
-
-
+  &:hover {
+    .cardContent {
+      opacity: 1;
     }
 
     .cardImg {
-        display: block;
-        height: auto;
-        transition: .6s ease;
-        width: 100%;
-        height: 100%;
+      opacity: 0.3;
     }
 
     .cardHeader {
-        position: absolute;
+      bottom: 70%;
+      color: black;
+      filter: none;
+
+      // header underline on hover
+      &:before,
+      &:after {
+        width: 100%;
         opacity: 1;
-        margin: 10px 5%;
-        bottom: 0;
-        transition: .2s ease;
-        letter-spacing: 1.3px;
-        font-weight: 400;
-        text-decoration: none;
-        color: white;
-        filter: drop-shadow(5px 5px 5px black);
-        font-weight: 400;
-        font-size: 1.3rem;
+      }
+    }
+  }
 
-        // header underline initial
-        &:before,
-        &:after {
-            content: "";
-            position: absolute;
-            bottom: -8px;
-            width: 0px;
-            height: 3px;
-            transition: .6s ease;
-            opacity: 0;
-            background-color: $mainColor;
-            left: 0;
-            animation-delay: .3s;
-        }
+  .cardImg {
+    display: block;
+    height: auto;
+    transition: 0.6s ease;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cardHeader {
+    position: absolute;
+    opacity: 1;
+    margin: 10px 5%;
+    bottom: 0;
+    transition: 0.2s ease;
+    letter-spacing: 1.3px;
+    font-weight: 400;
+    text-decoration: none;
+    color: white;
+    filter: drop-shadow(5px 5px 5px black);
+    font-weight: 400;
+    font-size: 1.3rem;
+
+    // header underline initial
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      width: 0px;
+      height: 3px;
+      transition: 0.6s ease;
+      opacity: 0;
+      background-color: $mainColor;
+      left: 0;
+      animation-delay: 0.3s;
+    }
+  }
+
+  .cardContent {
+    transition: 0.6s ease;
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    text-decoration: none;
+    color: black;
+
+    .about {
+      font-size: 0.9rem;
     }
 
-    .cardContent {
-        transition: .6s ease;
-        opacity: 0;
-        position: absolute;
-        bottom: 0;
-        left: 10px;
-        text-decoration: none;
-        color: black;
+    .cardIconsRow {
+      margin: 10px 0;
 
-        .about {
-
-            font-size: 0.9rem;
-        }
-
-        .cardIconsRow {
-            margin: 10px 0;
-
-            .cardIcon {
-                margin-left: 10px;
-                height: 32px;
-                width: 32px;
-            }
-        }
+      .cardIcon {
+        margin-left: 10px;
+        height: 32px;
+        width: 32px;
+      }
     }
-
+  }
 }
 
 /************************ media ************************/
 
 @media only screen and (min-width: 1500px) {
-    .card {
-        &:hover {
-
-            .cardHeader {
-                bottom: 70%;
-            }
-        }
+  .card {
+    &:hover {
+      .cardHeader {
+        bottom: 70%;
+      }
     }
+  }
 }
 
 @media only screen and (max-width: 1300px) {
-    .card {
-        &:hover {
-
-            .cardHeader {
-                bottom: 80%;
-            }
-        }
+  .card {
+    &:hover {
+      .cardHeader {
+        bottom: 80%;
+      }
     }
-
+  }
 }
 
-
 @media only screen and (max-width: 1200px) {
-    .card {
-        flex: 1 0 46%;
-        margin: 2%;
+  .card {
+    flex: 1 0 46%;
+    margin: 2%;
 
-        &:hover {
-
-            .cardHeader {
-                bottom: 70%;
-            }
-        }
-
-        .cardContent {
-            bottom: 5%;
-        }
+    &:hover {
+      .cardHeader {
+        bottom: 70%;
+      }
     }
+
+    .cardContent {
+      bottom: 5%;
+    }
+  }
 }
 
 @media only screen and (max-width: 1100px) {
-    .card {
-        flex: 1 0 46%;
-        margin: 2%;
+  .card {
+    flex: 1 0 46%;
+    margin: 2%;
 
-        &:hover {
-
-            .cardHeader {
-                bottom: 65%;
-            }
-        }
+    &:hover {
+      .cardHeader {
+        bottom: 65%;
+      }
     }
+  }
 }
 
 @media only screen and (max-width: 900px) {
-    .card {
-        flex: 1 0 46%;
-        margin: 2%;
+  .card {
+    flex: 1 0 46%;
+    margin: 2%;
 
-        &:hover {
-
-            .cardHeader {
-                bottom: 70%;
-            }
-        }
+    &:hover {
+      .cardHeader {
+        bottom: 70%;
+      }
     }
+  }
 }
-
 
 @media only screen and (max-width: 840px) {
-    .card {
-        flex: 1 0 80%;
-        margin: 2% auto;
+  .card {
+    flex: 1 0 80%;
+    margin: 2% auto;
 
-
-        &:hover {
-            .cardHeader {
-                bottom: 70%;
-            }
-        }
-
-        .cardHeader {
-            margin-left: 10%;
-            margin-right: 10%;
-        }
-
-        .cardContent {
-            margin-left: 10%;
-            margin-right: 10%;
-            font-size: 1rem;
-        }
+    &:hover {
+      .cardHeader {
+        bottom: 70%;
+      }
     }
 
+    .cardHeader {
+      margin-left: 10%;
+      margin-right: 10%;
+    }
 
+    .cardContent {
+      margin-left: 10%;
+      margin-right: 10%;
+      font-size: 1rem;
+    }
+  }
 }
-
-
-

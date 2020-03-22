@@ -1,38 +1,37 @@
 @import './src/stylesheets/global.scss';
 
 .container {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .listContainer {
-    display: flex;
-    flex-flow: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
 }
-
 
 /************************ loading animation ************************/
 
 @keyframes load {
-    0% {
-        opacity: 0.08;
-        filter: blur(5px);
-        letter-spacing: 3px;
-    }
+  0% {
+    opacity: 0.08;
+    filter: blur(5px);
+    letter-spacing: 3px;
+  }
 }
 
 .animate {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin: 30px auto;
-    font-family: Helvetica, sans-serif, Arial;
-    animation: load 1.2s infinite 0s ease-in-out;
-    animation-direction: alternate;
-    text-shadow: 0 0 1px white;
-    color: $mainColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 30px auto;
+  font-family: Helvetica, sans-serif, Arial;
+  animation: load 1.2s infinite 0s ease-in-out;
+  animation-direction: alternate;
+  text-shadow: 0 0 1px white;
+  color: $mainColor;
 }
