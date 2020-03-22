@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './NavBar.module.scss';
+import NavBarModal from './NavBarModal';
 
 /**
  * A navigation bar for the wesite.
@@ -10,6 +11,8 @@ import styles from './NavBar.module.scss';
 const NavBar = (props) =>  {
 
     const [isSocialOpen, setSocialOpen] = useState(false);
+
+    const toggleSocialOpen = () => setSocialOpen(!isSocialOpen);
     
     return (
         <nav>
@@ -46,7 +49,7 @@ const NavBar = (props) =>  {
             <img className={styles.socialButton} 
                  src={require('../../img/social-icon.png')} 
                  alt="Social"
-                 onClick={() => setSocialOpen(!isSocialOpen)}/>
+                 onClick={toggleSocialOpen}/>
 
             <div className={styles.externalLinks} style={isSocialOpen? {display: 'flex'} : null}>
                 <a href="https://www.facebook.com/groups/haifadev/" target="_blank" rel="noopener noreferrer">
@@ -59,7 +62,8 @@ const NavBar = (props) =>  {
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Meetup_Logo.png/626px-Meetup_Logo.png" alt="Meetup"/>
                 </a>
             </div>
-
+            
+            <NavBarModal open={isSocialOpen} onClose={toggleSocialOpen} />
         </nav>
     ); 
 }

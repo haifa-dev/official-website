@@ -48,10 +48,17 @@ nav {
 
         img {
             width: 25px;
-
+            position: relative;
+            z-index: 2;
             @include media-phone-small {
                 width: 18px;
+                
             }
+        }
+
+        a {
+            position: relative;
+            z-index: 2;
         }
 
         @include media-tablet {
