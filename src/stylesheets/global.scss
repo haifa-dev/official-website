@@ -1,39 +1,34 @@
-
 @import 'variables_functions_mixins';
 @import 'reset.scss';
 
-
-
 body {
-    margin: 0;
-    padding:  45px 0 0 0 ;
-    color:#333;
-      font-family: "Helvetica";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-      monospace;
-  }
+  margin: 0;
+  padding: 45px 0 0 0;
+  color: #333;
+  font-family: 'Helvetica';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  
-.bg-main{
-    background-color: #28b485;
-  }
-  .bg-secondary{
-    // background-color: #272727;
-     background-color: #333;
-  }
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
 
-  .fixed-top{
-    position: fixed;
-    top: 0;
-    right:0;
-    left:0;
-    z-index: 1;
-  }
+.bg-main {
+  background-color: #28b485;
+}
+
+.bg-secondary {
+  background-color: #333;
+}
+
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
 
 @keyframes App-logo-spin {
   from {
@@ -44,79 +39,74 @@ body {
   }
 }
 
-
-.container{
+.container {
   max-width: 60rem;
   margin-right: auto;
   margin-left: auto;
   padding-right: 1rem;
   padding-left: 1rem;
 }
-.home{
- 
-  h2{
+
+.home {
+
+  h2 {
     text-align: center;
-    b{
+    b {
       color: $mainColor;
       font-weight: bold;
-    } 
+    }
   }
-  article{
+
+  article {
     margin: 15px 0;
   }
 
-  p{
+  p {
     font-size: 18px;
     line-height: 32px;
   }
 }
 
-.jambo{
+.jambo {
   padding: 1rem;
   height: 15rem;
   background-image: linear-gradient(#333, #333), url('../img/haifa-dev-bg.jpg');
   background-blend-mode: hard-light;
   background-position: 60% 80%;
-  // https://www.freepik.com/free-vector/technology-background_4104991.htm#page=2&query=technology+digital&position=18
 }
 
-.landing-page{
-    color: white;
-    position: relative;
-    text-align: center; 
-    font-weight: 300;
-    margin: auto;
-    h1{
-      color: $mainColor;
-      font-size: 60px;
-      // fix: font-weight h1 and h4;
-      font-weight: inherit;
-      position: absolute;
-      top:50px;
-      left: 0;
-      right: 0;
-      span{
-        color: white;
-      }
-    }
+.landing-page {
+  color: white;
+  position: relative;
+  text-align: center;
+  font-weight: 300;
+  margin: auto;
 
-    h4{
-      position: absolute;
-      // fix: font-weight h1 and h4;
-      font-weight: inherit;
-      top:115px;
-      left: 0;
-      right: 0;
+  h1 {
+    color: $mainColor;
+    font-size: 60px;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    span {
+      color: white;
     }
-    // &:hover{
-    //   background-color: $mainColor;
-    //   h1{
-    //     color: white;
-    //   }
-    // }
+  }
+
+  h4 {
+    position: absolute;
+    top: 115px;
+    left: 0;
+    right: 0;
+  }
+
+  h1,
+  h4 {
+    // fix: font-weight h1 and h4;
+    font-weight: inherit;
+  }
 }
-
-
 
 h1 {
   font-size: 2.5rem;
@@ -142,20 +132,22 @@ h6 {
   font-size: 1rem;
 }
 
-
-h1,h2,h3,h4,h5,h6 {
-  margin: 25px 0  10px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 25px 0 10px;
 }
 
-.bg-pink{
+.bg-pink {
   background-color: pink;
 }
 
-
-footer{
+footer {
   color: white;
   padding: 30px;
   text-align: center;
   background-color: #333;
-  // opacity: 0.8;
 }

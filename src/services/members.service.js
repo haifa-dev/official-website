@@ -1,75 +1,82 @@
 
-const members = [
-
-    {
-        id: 0,
-        name: "David Klein",
-        about: "Founder of Haifa:Dev, Front-End Engineer, and project director of the Haifa:Dev website.",
-        img: "https://media-exp1.licdn.com/dms/image/C4E03AQHcOISNKjdNag/profile-displayphoto-shrink_200_200/0?e=1586390400&v=beta&t=fZ1fTcW-A-a91oIq2BPRrE3APpE_2yvY83mP-m6y25Q",
-        githubLink: "https://github.com/Polarts",
-        linkedinLink: "https://www.linkedin.com/in/david-klein-835048161/"
-    },
-    {
-        id: 1,
-        name: "Guy Sarkinsky",
-        about: "Founder and organizer of Haifa:Dev. Full-stack developer.",
-        img: "https://secure.meetupstatic.com/photos/member/9/f/c/c/highres_296680908.jpeg",
-        githubLink: "https://github.com/GuySarkinsky",
-        linkedinLink: "https://www.linkedin.com/in/sergey-sarkinsky/"
-    },
-    {
-        id: 2,
-        name: "Tomer Matmon",
-        about: "Aspiring web developer. Founder of Haifa:Dev developer’s community.",
-        img: "https://secure.meetupstatic.com/photos/member/a/c/d/highres_295322765.jpeg",
-        githubLink: "https://github.com/Tomer51m",
-        linkedinLink: "https://www.linkedin.com/in/tomermatmon/"
-    },
-];
-
-// #region get functions
+/**
+ * @typedef {object} Member
+ * @property {number} id
+ * @property {string} name
+ * @property {string} about
+ * @property {string} img
+ * @property {string} [githubLink]
+ * @property {string} [linkedinLink]
+ */
 
 /**
- * Gets the members, filters with a query object.
- * @author [David Klein, Polarts](https://github.com/Polarts)
+ * Get members in a paginated manner
  * 
- * @param {Number} perPage the number of members per page
- * @param {Number} page the current page index, starting with 0
- * @param {Number} id the id to get
- * @param {String} name the name to search
+ * @param {number} perPage the number of members per page
+ * @param {number} page the current page index, starting with 0
  * 
- * @return promise of an array of members, enclosed in pagination.
+ * @return {Promise<Member[]>} of an array of members
  */
-export const getMembersAsync = ({ perPage, page, id, name }) => new Promise((result) => {
+export async function getMembers({ perPage = members.length, page = 0 } = {}) {
+  const startIndex = page * perPage;
 
-    if (id) {
-        result(members.find(m => m.id === id)[0]);
-    }
-    
-    if (name) {
-        result(members.find(m => m.name.includes(name)));
-    }
+  if (startIndex > members.length) {
+    return [];
+  }
+  return members.slice(startIndex, startIndex + perPage);
+};
 
-    if (!page) {
-        page = 0;
-    }
+/**
+ * Find a member by id
+ * 
+ * @param {number} id the id to get
+ *
+ * @return {Promise<Member>} of member if exists, otherwise null
+ */
+export async function getMemberById(id) {
+  return members.find(m => m.id === id)[0] || null;
+}
 
-    if (!perPage) {
-        perPage = members.length;
-    }
-
-    // calculate the index at which we should start getting items.
-    var startIndex = page * perPage;
-
-    if (startIndex > members.length) {
-        //setTimeout(() => result(members), 3500);
-        result(false);
-    }
-    else {
-        setTimeout(() => result(members.slice(startIndex, startIndex + perPage)), 1500);
-    }
-
-});
+/**
+ * Search members by their name
+ * 
+ * @param {string} name the name to search
+ *
+ * @return {Promise<Member[]>} array of fitting members. empty array if none found
+ */
+export async function searchMembersByName(name) {
+  name = name.toLowerCase();
+  return members.find(m => m.name.toLowerCase().includes(name));
+}
 
 // #endregion
 
+/**
+ * @type Member[]
+ */
+const members = [
+  {
+    id: 0,
+    name: "David Klein",
+    about: "Founder of Haifa:Dev, Front-End Engineer, and project director of the Haifa:Dev website.",
+    img: "https://media-exp1.licdn.com/dms/image/C4E03AQHcOISNKjdNag/profile-displayphoto-shrink_200_200/0?e=1586390400&v=beta&t=fZ1fTcW-A-a91oIq2BPRrE3APpE_2yvY83mP-m6y25Q",
+    githubLink: "https://github.com/Polarts",
+    linkedinLink: "https://www.linkedin.com/in/david-klein-835048161/",
+  },
+  {
+    id: 1,
+    name: "Guy Sarkinsky",
+    about: "Founder and organizer of Haifa:Dev. Full-stack developer.",
+    img: "https://secure.meetupstatic.com/photos/member/9/f/c/c/highres_296680908.jpeg",
+    githubLink: "https://github.com/GuySarkinsky",
+    linkedinLink: "https://www.linkedin.com/in/sergey-sarkinsky/"
+  },
+  {
+    id: 2,
+    name: "Tomer Matmon",
+    about: "Aspiring web developer. Founder of Haifa:Dev developer’s community.",
+    img: "https://secure.meetupstatic.com/photos/member/a/c/d/highres_295322765.jpeg",
+    githubLink: "https://github.com/Tomer51m",
+    linkedinLink: "https://www.linkedin.com/in/tomermatmon/"
+  },
+];
