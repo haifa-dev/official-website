@@ -25,6 +25,8 @@ const SocialIcons = ({ isSocialOpen }) => (
 const NavBar = () => {
   const [isSocialOpen, setSocialOpen] = useState(false);
 
+  const onClick = () => setSocialOpen(!isSocialOpen);
+
   return (
     <nav>
       <a id="homeNav" href="/#home">
@@ -47,10 +49,12 @@ const NavBar = () => {
         className={styles.socialButton}
         src={require('../../img/social-icon.png')}
         alt="Social"
-        onClick={() => setSocialOpen(!isSocialOpen)}
+        onClick={onClick}
       />
 
       <SocialIcons {...{ isSocialOpen }} />
+
+      <NavBarModal open={isSocialOpen} onClose={onClick} />
     </nav>
   );
 }
