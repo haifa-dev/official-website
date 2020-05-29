@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import styles from './NavBar.module.scss';
-import NavBarModal from './NavBarModal';
 
 const SocialIcons = ({ isSocialOpen }) => (
   <div className={styles.externalLinks} style={isSocialOpen ? { display: 'flex' } : null}>
@@ -26,6 +26,14 @@ const NavBar = () => {
   const [isSocialOpen, setSocialOpen] = useState(false);
 
   const onClick = () => setSocialOpen(!isSocialOpen);
+
+  if (isSocialOpen) {
+    ReactDOM.createPortal(
+      <div id="modal_navbar" className={styles.transparentModal} onClick={onClick}>
+      </div>,
+      document.body
+  );
+  }
 
   return (
     <nav>
@@ -53,8 +61,6 @@ const NavBar = () => {
       />
 
       <SocialIcons {...{ isSocialOpen }} />
-
-      <NavBarModal open={isSocialOpen} onClose={onClick} />
     </nav>
   );
 }
