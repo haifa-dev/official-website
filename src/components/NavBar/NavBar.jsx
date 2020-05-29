@@ -27,14 +27,6 @@ const NavBar = () => {
 
   const onClick = () => setSocialOpen(!isSocialOpen);
 
-  if (isSocialOpen) {
-    ReactDOM.createPortal(
-      <div id="modal_navbar" className={styles.transparentModal} onClick={onClick}>
-      </div>,
-      document.body
-  );
-  }
-
   return (
     <nav>
       <a id="homeNav" href="/#home">
@@ -61,6 +53,14 @@ const NavBar = () => {
       />
 
       <SocialIcons {...{ isSocialOpen }} />
+
+      {isSocialOpen && ReactDOM.createPortal(
+        <div
+          id="modal_navbar"
+          className={styles.transparentModal}
+          onClick={onClick}>
+        </div>,
+      document.getElementById("modals"))}
     </nav>
   );
 }
