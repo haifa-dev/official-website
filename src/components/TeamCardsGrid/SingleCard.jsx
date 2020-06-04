@@ -22,7 +22,7 @@ const SingleCard = ({ id, img, name, about, githubLink, linkedinLink }) => (
         <SocialLink
           link={githubLink}
           alt="github link"
-          img="https://www.stickpng.com/assets/images/5847f98fcef1014c0b5e48c0.png"
+          img="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/600px-Octicons-mark-github.svg.png"
         />
         <SocialLink
           link={linkedinLink}
