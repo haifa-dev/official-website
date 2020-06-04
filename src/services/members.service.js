@@ -59,7 +59,7 @@ const members = [
     id: 0,
     name: "David Klein",
     about: "Founder of Haifa:Dev, Front-End Engineer, and project director of the Haifa:Dev website.",
-    img: "https://media-exp1.licdn.com/dms/image/C4E03AQHcOISNKjdNag/profile-displayphoto-shrink_200_200/0?e=1586390400&v=beta&t=fZ1fTcW-A-a91oIq2BPRrE3APpE_2yvY83mP-m6y25Q",
+    img: "https://secure.meetupstatic.com/photos/member/4/2/4/7/highres_295336967.jpeg",
     githubLink: "https://github.com/Polarts",
     linkedinLink: "https://www.linkedin.com/in/david-klein-835048161/",
   },
