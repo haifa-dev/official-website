@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import styles from './NavBar.module.scss';
 
 const SocialIcons = ({ isSocialOpen }) => (
@@ -24,6 +25,8 @@ const SocialIcons = ({ isSocialOpen }) => (
 const NavBar = () => {
   const [isSocialOpen, setSocialOpen] = useState(false);
 
+  const onClick = () => setSocialOpen(!isSocialOpen);
+
   return (
     <nav>
       <a id="homeNav" href="/#home">
@@ -46,10 +49,18 @@ const NavBar = () => {
         className={styles.socialButton}
         src={require('../../img/social-icon.png')}
         alt="Social"
-        onClick={() => setSocialOpen(!isSocialOpen)}
+        onClick={onClick}
       />
 
       <SocialIcons {...{ isSocialOpen }} />
+
+      {isSocialOpen && ReactDOM.createPortal(
+        <div
+          id="modal_navbar"
+          className={styles.transparentModal}
+          onClick={onClick}>
+        </div>,
+      document.getElementById("modals"))}
     </nav>
   );
 }
