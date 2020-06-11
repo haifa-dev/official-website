@@ -6,7 +6,6 @@ import Home from '../pages/Home/Home';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import Project from '../pages/Project/Project';
 import TeamCardsGrid from '../TeamCardsGrid/TeamCardsGrid';
-import { getRepoContributersAsync } from "../../services/github.service";
 
 const Routes = () => (
   <Switch>
@@ -23,7 +22,6 @@ const App = () => (
     <div className="fixed-top bg-secondary">
       <div className="container">
         <NavBar></NavBar>
-        {console.log(getRepoContributersAsync("haifa-dev-website"))}
       </div>
     </div>
     <Routes />
