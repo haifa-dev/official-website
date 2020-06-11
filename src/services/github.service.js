@@ -1,6 +1,5 @@
 const URL = "https://api.github.com";
 const USERNAME = "haifa-dev";
-const TOKEN = "token";
 
 export async function getRepoAsync(repoName) {
   try {
@@ -9,10 +8,11 @@ export async function getRepoAsync(repoName) {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/vnd.github.v3+json",
-        Authorization: `Token ${TOKEN}`
+        Authorization: `Token ${process.env.REACT_APP_GITHUB_TOKEN}`
       }
     });
     let data = await response.json();
+    console.log(data)
     return data;
   } catch (err) {
     console.error(err.message);
@@ -28,7 +28,7 @@ export async function getRepoContributersAsync(repoName) {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/vnd.github.v3+json",
-          Authorization: `Token ${TOKEN}`
+          Authorization: `Token ${process.env.REACT_APP_GITHUB_TOKEN}`
         }
       }
     );
