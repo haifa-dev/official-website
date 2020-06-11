@@ -12,7 +12,6 @@ export async function getRepoAsync(repoName) {
       }
     });
     let data = await response.json();
-    console.log(data)
     return data;
   } catch (err) {
     console.error(err.message);
@@ -33,6 +32,7 @@ export async function getRepoContributersAsync(repoName) {
       }
     );
     let data = await response.json();
+    console.log(data)
     return data;
   } catch (err) {
     console.error(err.message);
