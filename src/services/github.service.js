@@ -1,6 +1,5 @@
 const URL = "https://api.github.com";
 const USERNAME = "haifa-dev";
-const TOKEN = "token";
 
 export async function getRepoAsync(repoName) {
   try {
@@ -9,13 +8,15 @@ export async function getRepoAsync(repoName) {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/vnd.github.v3+json",
-        Authorization: `Token ${TOKEN}`
-      }
+        Authorization: `Token ${process.env.REACT_APP_GITHUB_TOKEN}`,
+      },
     });
+    if (!response.ok) throw new Error("Failed to fetch repo");
     let data = await response.json();
     return data;
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
+    return { result: false, error: err.message};
   }
 }
 
@@ -28,14 +29,16 @@ export async function getRepoContributersAsync(repoName) {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/vnd.github.v3+json",
-          Authorization: `Token ${TOKEN}`
-        }
+          Authorization: `Token ${process.env.REACT_APP_GITHUB_TOKEN}`,
+        },
       }
     );
+    if (!response.ok) throw new Error("Failed to fetch contributers");
     let data = await response.json();
     return data;
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
+    return { result: false, error: err.message};
   }
 }
 
@@ -46,11 +49,13 @@ export async function getUserReposAsync(userName) {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/vnd.github.v3+json",
-      }
+      },
     });
+    if (!response.ok) throw new Error("Failed to fetch user repos");
     let data = await response.json();
     return data;
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
+    return { result: false, error: err.message};
   }
 }
