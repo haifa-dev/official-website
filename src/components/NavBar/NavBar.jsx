@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './NavBar.module.scss';
+import { Link } from "react-router-dom";
 
 const SocialIcons = ({ isSocialOpen }) => (
   <div className={styles.externalLinks} style={isSocialOpen ? { display: 'flex' } : null}>
@@ -44,6 +45,8 @@ const NavBar = () => {
       <a id="teamNav" className={styles.teamNav} href="/#team">
         <span>Our Team</span>
       </a>
+
+      <Link to="/ProjectRequest">Request project</Link>
 
       <img
         className={styles.socialButton}
