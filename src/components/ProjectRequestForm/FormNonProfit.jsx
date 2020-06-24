@@ -3,15 +3,15 @@ import styles from "./requestForm.module.scss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-export default function FormNonProfit({ setFormState, loadPreviousForm, loadNextForm }) {
+export default function FormNonProfit({
+  formState,
+  setFormState,
+  loadPreviousForm,
+  loadNextForm,
+}) {
   return (
     <Formik
-      initialValues={{
-        nonProfitDesc: "",
-        nonProfitWebSite: "",
-        nonProfitWebAddress: "",
-        nonProfitTasks: "",
-      }}
+      initialValues={formState}
       validationSchema={Yup.object().shape({
         nonProfitDesc: Yup.string().required("Required field"),
         nonProfitWebSite: Yup.string().required("Required field"),
@@ -30,7 +30,7 @@ export default function FormNonProfit({ setFormState, loadPreviousForm, loadNext
         setFormState((prev) => {
           return { ...prev, ...values };
         });
-        loadNextForm("confirmForm")
+        loadNextForm("confirmForm");
       }}
     >
       <Form className={styles.requestForm}>

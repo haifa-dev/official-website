@@ -3,16 +3,10 @@ import styles from "./requestForm.module.scss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-export default function FormForProfit({ setFormState, loadPreviousForm, loadNextForm }) {
+export default function FormForProfit({ formState, setFormState, loadPreviousForm, loadNextForm }) {
   return (
     <Formik
-      initialValues={{
-        businessPlan: "",
-        linkToDocs: "",
-        systemDefinition: "",
-        CommunityOrProfit: "",
-        isFunded: "",
-      }}
+      initialValues={formState}
       validationSchema={Yup.object().shape({
         businessPlan: Yup.string().required("Required field"),
         linkToDocs: Yup.string()
