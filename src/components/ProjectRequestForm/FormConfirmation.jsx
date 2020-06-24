@@ -1,9 +1,10 @@
 import React from "react";
 
-export default function FormConifrmation({ formState, loadPreviousForm }) {
+export default function FormConfirmation({ formState, loadPreviousForm, loadNextForm }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(JSON.stringify(formState, null, 2));
+    // POST form to server
+    loadNextForm(null);
   };
 
   return (
