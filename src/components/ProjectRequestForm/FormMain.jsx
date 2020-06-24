@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import FormUser from "./FormUser";
 import FormNonProfit from "./FormNonProfit";
 import FormForProfit from "./FormForProfit";
-import FormConifrmation from "./FormConifrmation";
+import FormConfirmation from "./FormConfirmation";
+import FormSubmitted from "./FormSubmitted";
 
 export default function RequestForm() {
   const [formState, setFormState] = useState({});
@@ -42,13 +43,14 @@ export default function RequestForm() {
 
      case "confirmForm":
      return (
-       <FormConifrmation 
+       <FormConfirmation 
          formState={formState}
          loadPreviousForm={loadPreviousForm}
+         loadNextForm={loadNextForm}
        />
      )
 
     default:
-      return <div>Form submitted</div>;
+      return <FormSubmitted />;
   }
 }

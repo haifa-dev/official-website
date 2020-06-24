@@ -28,7 +28,6 @@ export default function FormMain({ setFormState, loadNextForm }) {
         setFormState(() => {
           return { ...values };
         });
-        console.log(values.businessType);
         loadNextForm(values.businessType);
       }}
     >
