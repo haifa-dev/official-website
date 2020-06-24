@@ -1,26 +1,40 @@
 import React from "react";
 import styles from "./requestForm.module.scss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import * as yup from "yup";
 
-export default function FormForProfit({ formState, setFormState, loadPreviousForm, loadNextForm }) {
+export default function FormForProfit({
+  formState,
+  setFormState,
+  loadPreviousForm,
+  loadNextForm,
+}) {
   return (
     <Formik
       initialValues={formState}
-      validationSchema={Yup.object().shape({
-        businessPlan: Yup.string().required("Required field"),
-        linkToDocs: Yup.string()
+      validationSchema={yup.object().shape({
+        businessPlan: yup.string().required("Required field"),
+        linkToDocs: yup
+          .string()
           .url("Invalid url (e.g: http://example.com)")
           .required("Required field"),
-        systemDefinition: Yup.string().required("Required field"),
-        CommunityOrProfit: Yup.string().required("Required field"),
-        isFunded: Yup.string().required("Required field"),
+        systemDefinition: yup.string().required("Required field"),
+        systemDefinitionFile: yup
+          .string()
+          .url("Invalid url (e.g: http://example.com)")
+          .when("systemDefinition", (systemDefinition, schema) => {
+            return systemDefinition === "yes"
+              ? schema.required("Required field")
+              : schema.notRequired();
+          }),
+        CommunityOrProfit: yup.string().required("Required field"),
+        isFunded: yup.string().required("Required field"),
       })}
       onSubmit={(values) => {
         setFormState((prev) => {
           return { ...prev, ...values };
         });
-        loadNextForm("confirmForm")
+        loadNextForm("confirmForm");
       }}
     >
       <Form className={styles.requestForm}>
@@ -74,19 +88,23 @@ export default function FormForProfit({ formState, setFormState, loadPreviousFor
           <label className={styles.labelRadio} htmlFor="systemNotDefined">
             No
           </label>
+
+          <label className={styles.inlineLabel} htmlFor="systemDefinitionFile">
+            Add link to file:
+          </label>
+          <Field
+            type="text"
+            id="systemDefinitionFile"
+            name="systemDefinitionFile"
+          />
           <ErrorMessage
             name="systemDefinition"
             render={(msg) => <span className={styles.formError}>{msg}</span>}
           />
-
-          <label className={styles.addFileLabel} htmlFor="systemDefinitionFile">
-            Select a file:
-          </label>
-          <input
-            type="file"
-            id="systemDefinitionFile"
+          <ErrorMessage
             name="systemDefinitionFile"
-          ></input>
+            render={(msg) => <span className={styles.formError}>{msg}</span>}
+          />
         </div>
 
         <div className={styles.inputField}>

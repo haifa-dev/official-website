@@ -1,42 +1,95 @@
 .requestForm {
-    border: 1px solid black;
-    border-radius: 4px;
-    padding: 20px;
+  border: .7px solid grey;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  .inputField {
     margin-bottom: 20px;
 
-    .inputField {
-        margin-bottom: 20px;
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            margin-right: 5px;
-        }
-
-        .labelRadio {
-            display: inline;
-            margin-right: 15px;
-        }
-
-        input:not([type=radio]) {
-            height: 20px;
-            width: 200px;
-        }
-
-        textarea {
-            width: 280px;
-            height: 80px;
-        }
-
-        .addFileLabel{
-            display: inline;
-        }
-
+    label {
+      display: block;
+      margin-bottom: 8px;
+      margin-right: 5px;
     }
 
-    .formError {
-        color: red;
-        font-size: smaller;
-        margin-left: 5px;
+    .labelRadio {
+      display: inline;
+      margin-right: 15px;
     }
+
+    input:not([type="radio"]) {
+      height: 20px;
+      width: 200px;
+      border: 0.7px solid grey;
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
+
+    textarea {
+      width: 280px;
+      height: 80px;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    .inlineLabel {
+      display: inline;
+    }
+  }
+
+  .formError {
+    display: inline-block;
+    color: red;
+    font-size: smaller;
+    margin-left: 5px;
+    animation: slideRight 0.7s ease-out;
+  }
+
+  .confirmationField {
+    margin: 20px 0;
+  }
+
+  .confirmationKey {
+      font-weight: bold;
+  }
+
+  .confirmationValue {
+    display: inline-block;
+      margin-left: 5px;
+      color: #333;
+  }
+
+  button {
+    color: white;
+    padding: 7px 12px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    box-shadow: 3px 3px 5px rgba(119, 136, 153, 0.555);
+  }
+
+  button:active {
+    transform: scale(0.98);
+  }
+
+  button:hover {
+      background-color: black;
+  }
+
+  h2 {
+      margin-top: 0;
+      font-size: 20px;
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-3px);
+  }
+  100% {
+    opacity: 1;
+  }
 }

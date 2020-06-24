@@ -19,12 +19,11 @@ export default function RequestForm() {
     businessPlan: "",
     linkToDocs: "",
     systemDefinition: "",
+    systemDefinitionFile: "",
     CommunityOrProfit: "",
     isFunded: "",
   });
   const [formtype, setFormType] = useState("formUser");
-
-  console.log(formState);
 
   const loadNextForm = (formType) => setFormType(formType);
   const loadPreviousForm = (e) => {

@@ -1,22 +1,22 @@
 import React from "react";
 import styles from "./requestForm.module.scss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import * as yup from "yup";
 
 export default function FormMain({ formState, setFormState, loadNextForm }) {
   return (
     <Formik
       initialValues={formState}
-      validationSchema={Yup.object().shape({
-        fullName: Yup.string()
+      validationSchema={yup.object().shape({
+        fullName: yup.string()
           .min(2, "minimum 2 letters")
           .required("Required field"),
-        email: Yup.string().email("Invalid email").required("Required field"),
-        phoneNumber: Yup.number().required("Required field"),
-        businessType: Yup.string().required("Required field"),
-        aboutProject: Yup.string()
+        email: yup.string().email("Invalid email").required("Required field"),
+        phoneNumber: yup.number().typeError("Numbers only").required("Required field"),
+        aboutProject: yup.string()
           .required("Required field")
           .min(30, "minimum 50 characters"),
+        businessType: yup.string().required("Required field"),
       })}
       onSubmit={(values) => {
         setFormState((prev) => {
@@ -39,7 +39,7 @@ export default function FormMain({ formState, setFormState, loadNextForm }) {
 
           <div className={styles.inputField}>
             <label htmlFor="email">Email:</label>
-            <Field name="email" type="text" />
+            <Field name="email" type="email" />
             <ErrorMessage
               name="email"
               render={(msg) => <span className={styles.formError}>{msg}</span>}
@@ -56,7 +56,7 @@ export default function FormMain({ formState, setFormState, loadNextForm }) {
           </div>
 
           <div className={styles.inputField}>
-            <label htmlFor="aboutProject">Tell about your project:</label>
+            <label htmlFor="aboutProject">Tell us about your project:</label>
             <Field
               as="textarea"
               maxLength="300"
@@ -93,6 +93,10 @@ export default function FormMain({ formState, setFormState, loadNextForm }) {
             <label className={styles.labelRadio} htmlFor="typeProfit">
               Profit
             </label>
+            <ErrorMessage
+              name="businessType"
+              render={(msg) => <span className={styles.formError}>{msg}</span>}
+            />
           </div>
           <button type="submit">Next</button>
         </Form>

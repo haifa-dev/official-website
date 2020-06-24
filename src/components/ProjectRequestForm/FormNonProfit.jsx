@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./requestForm.module.scss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import * as yup from "yup";
 
 export default function FormNonProfit({
   formState,
@@ -12,19 +12,19 @@ export default function FormNonProfit({
   return (
     <Formik
       initialValues={formState}
-      validationSchema={Yup.object().shape({
-        nonProfitDesc: Yup.string().required("Required field"),
-        nonProfitWebSite: Yup.string().required("Required field"),
-        nonProfitWebAddress: Yup.string()
+      validationSchema={yup.object().shape({
+        nonProfitDesc: yup.string().required("Required field"),
+        nonProfitWebSite: yup.string().required("Required field"),
+        nonProfitWebAddress: yup.string()
           .url("Invalid url (e.g: http://example.com)")
           .when("nonProfitWebSite", (nonProfitWebSite, schema) => {
             return nonProfitWebSite === "yes"
               ? schema.required("Required field")
               : schema.notRequired();
           }),
-        nonProfitTasks: Yup.string()
+        nonProfitTasks: yup.string()
           .required("Required field")
-          .min(10, "minimum 50 characters"),
+          .min(50, "minimum 50 characters"),
       })}
       onSubmit={(values) => {
         setFormState((prev) => {
@@ -66,15 +66,15 @@ export default function FormNonProfit({
           <label className={styles.labelRadio} htmlFor="forProfitWebSite">
             No
           </label>
+
+          <label className={styles.inlineLabel} htmlFor="nonProfitWebAddress">
+            Link to website:
+          </label>
+          <Field type="text" name="nonProfitWebAddress" />
           <ErrorMessage
             name="nonProfitWebSite"
             render={(msg) => <span className={styles.formError}>{msg}</span>}
           />
-
-          <label htmlFor="nonProfitWebAddress">
-            What is your website address?
-          </label>
-          <Field type="text" name="nonProfitWebAddress" />
           <ErrorMessage
             name="nonProfitWebAddress"
             render={(msg) => <span className={styles.formError}>{msg}</span>}
