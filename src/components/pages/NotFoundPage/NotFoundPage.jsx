@@ -1,11 +1,9 @@
-
-import React from 'react';
+import React from "react";
 
 const NotFoundPage = () => (
-  <div>
+  <div className="flex-1">
     <h1>NOT FOUND</h1>
   </div>
 );
 
 export default NotFoundPage;
-
