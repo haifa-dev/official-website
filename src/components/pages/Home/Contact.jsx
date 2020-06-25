@@ -15,7 +15,7 @@ export default function Contact() {
       <p>
         We welcome you to join us on{" "}
         <a href="https://chat.whatsapp.com/G26LTepUrpT2W3GS26mpoo">WhatsApp</a>{" "}
-        &amps; <a href="https://www.facebook.com/groups/haifadev/">Facebook</a>,
+        {"&"} <a href="https://www.facebook.com/groups/haifadev/">Facebook</a>,
         and follow our meetup announcements as member of our{" "}
         <a href="https://www.meetup.com/Haifa-dev/">Meetup group</a>.
       </p>
