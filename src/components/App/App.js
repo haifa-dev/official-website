@@ -6,11 +6,12 @@ import Home from '../pages/Home/Home';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import Project from '../pages/Project/Project';
 import TeamCardsGrid from '../TeamCardsGrid/TeamCardsGrid';
-import { getRepoContributersAsync } from "../../services/github.service";
+import RequestForm from "../pages/RequestForm/RequestsForm";
 
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Home} />
+    <Route exact path="/ProjectRequest" component={RequestForm} />
     <Route exact path="/projects/:id" component={Project} />
     <Route exact path="/project" component={Project} />
     <Route exact path="/members" component={TeamCardsGrid} />
@@ -23,7 +24,6 @@ const App = () => (
     <div className="fixed-top bg-secondary">
       <div className="container">
         <NavBar></NavBar>
-        {console.log(getRepoContributersAsync("haifa-dev-website"))}
       </div>
     </div>
     <Routes />
