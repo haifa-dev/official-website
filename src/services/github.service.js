@@ -1,7 +1,7 @@
 const URL = "https://api.github.com";
 const USERNAME = "haifa-dev";
 
-export async function getHaifaDevRepos(repoName) {
+export async function getAllRepos() {
   try {
     let response = await fetch(`${URL}/users/${USERNAME}/repos`, {
       method: "GET",
@@ -19,6 +19,26 @@ export async function getHaifaDevRepos(repoName) {
     return { result: false, error: err.message};
   }
 }
+
+export async function getRepoIssues(repoName) {
+  try {
+    let response = await fetch(`${URL}/repos/${USERNAME}/${repoName}/issues`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/vnd.github.v3+json",
+        Authorization: `Token ${process.env.REACT_APP_GITHUB_TOKEN}`,
+      },
+    });
+    if (!response.ok) throw new Error("Failed to fetch haida dev repos");
+    let data = await response.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+    return { result: false, error: err.message};
+  }
+}
+
 
 
 export async function getRepoAsync(repoName) {
