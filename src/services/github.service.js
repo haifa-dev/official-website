@@ -16,7 +16,7 @@ export async function getAllRepos() {
     return data;
   } catch (err) {
     console.error(err);
-    return { result: false, error: err.message};
+    return { result: false, error: err.message };
   }
 }
 
@@ -35,11 +35,9 @@ export async function getRepoIssues(repoName) {
     return data;
   } catch (err) {
     console.error(err);
-    return { result: false, error: err.message};
+    return { result: false, error: err.message };
   }
 }
-
-
 
 export async function getRepoAsync(repoName) {
   try {
@@ -56,7 +54,7 @@ export async function getRepoAsync(repoName) {
     return data;
   } catch (err) {
     console.error(err);
-    return { result: false, error: err.message};
+    return { result: false, error: err.message };
   }
 }
 
@@ -78,7 +76,7 @@ export async function getRepoContributers(repoName) {
     return data;
   } catch (err) {
     console.error(err);
-    return { result: false, error: err.message};
+    return { result: false, error: err.message };
   }
 }
 
@@ -96,6 +94,6 @@ export async function getUserReposAsync(userName) {
     return data;
   } catch (err) {
     console.error(err);
-    return { result: false, error: err.message};
+    return { result: false, error: err.message };
   }
 }
