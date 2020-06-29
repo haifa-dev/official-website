@@ -60,7 +60,7 @@ export async function getRepoAsync(repoName) {
   }
 }
 
-export async function getRepoContributersAsync(repoName) {
+export async function getRepoContributers(repoName) {
   try {
     let response = await fetch(
       `${URL}/repos/${USERNAME}/${repoName}/contributors`,
