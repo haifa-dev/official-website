@@ -1,0 +1,109 @@
+.projectCard {
+  user-select: none;
+
+  .repo {
+    min-height: 30px;
+    box-shadow: 2px 2px 8px lightgray;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 20px;
+
+    .repoTitle {
+      cursor: pointer;
+      width: 100%;
+      padding: 15px;
+      font-size: 22px;
+    }
+
+    .repoInfo {
+      margin: 15px 10px;
+
+      .repoDesc {
+        border-top: 0.7px solid grey;
+
+        font-size: 16px;
+        padding: 10px;
+
+        .repoDates {
+          font-size: 12px;
+        }
+
+        .repoPreview {
+          border-radius: 0;
+          height: auto;
+          width: auto;
+          max-width: 50%;
+          max-width: 50%;
+        }
+
+        div {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    .contributorsContainer {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .contributor {
+      margin: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 174px;
+      height: 210px;
+      border-radius: 5px;
+      box-shadow: 2px 2px 8px lightgray;
+      transition: all 300ms ease;
+
+      &:hover {
+        box-shadow: 3px 3px 15px lightgray;
+        transform: scale(1.05);
+      }
+
+      &:hover > img {
+        transform: scale(1.05);
+      }
+    }
+
+    a {
+      color: black;
+      border-radius: 50%;
+      text-decoration: none;
+
+      &:active {
+        color: inherit;
+      }
+
+      &:visited {
+        color: inherit;
+      }
+    }
+
+    img {
+      width: 120px;
+      border-radius: 50%;
+      transition: all 400ms ease;
+    }
+  }
+
+  .loading {
+    font-size: initial;
+    margin-left: 10px;
+    color: green;
+    animation: fade 0.5s linear 0s infinite alternate;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0.25;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

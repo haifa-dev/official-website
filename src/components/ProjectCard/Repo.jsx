@@ -1,32 +1,87 @@
 import React, { useState } from "react";
 import styles from "./projectCard.module.scss";
-import { getRepoContributersAsync } from "../../services/github.service";
+import {
+  getRepoContributers,
+  getRepoIssues,
+} from "../../services/github.service";
 
 export default function Repo({ repo }) {
+  const [reveal, setReveal] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const [contributors, setContributors] = useState(null);
-  const [reveal, setReveal] = useState();
+  const [issues, setIssues] = useState(null);
 
   const handleClick = async () => {
-    const data = await getRepoContributersAsync(repo.name);
-    console.log(data);
-    setContributors(data);
+    if (!contributors) setLoading(true);
+    const contributersData = await getRepoContributers(repo.name);
+    setContributors(contributersData);
+    const issuesData = await getRepoIssues(repo.name);
+    setIssues(issuesData);
+    console.log(issuesData);
+    setReveal(!reveal);
+    setLoading(false);
+  };
+
+  const RepoInfo = () => {
+    return (
+      <div className={styles.repoInfo}>
+        <div className={styles.repoTitle}>
+          <span>{repo.name}</span>
+          {loading && <span className={styles.loading}>Loading...</span>}
+        </div>
+        {reveal && (
+          <div className={styles.repoDesc}>
+            <div>
+              <span>About the project: {repo.description}</span>
+            </div>
+            <div className={styles.repoDates}>
+              <span>
+                Created: {new Date(repo.created_at).toLocaleDateString("en-il")}
+                {" | "}
+              </span>
+              <span>
+                Last update:{" "}
+                {new Date(repo.updated_at).toLocaleDateString("en-il")}
+              </span>
+            </div>
+            <div>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const Contributors = () => {
+    return (
+      <div className={styles.contributorsContainer}>
+        {reveal &&
+          contributors &&
+          contributors.map((contributor, i) => {
+            return (
+              <a
+                key={i}
+                href={contributor.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className={styles.contributor}>
+                  <img src={contributor.avatar_url} alt="avatar" />
+                  <span>{contributor.login}</span>
+                  <span>Contributions: {contributor.contributions}</span>
+                </div>
+              </a>
+            );
+          })}
+      </div>
+    );
   };
 
   return (
-    <div>
-      <h4 onClick={handleClick}>{repo.name}</h4>
-      {contributors &&
-        contributors.map((contributor, i) => {
-          return (
-            <div key={i}>
-              <span>{contributor.login}</span>
-              <a href={contributor.html_url} target="_blank">
-                <img src={contributor.avatar_url} />
-              </a>
-              <span>Contributions: {contributor.contributions}</span>
-            </div>
-          );
-        })}
+    <div className={styles.repo} onClick={handleClick}>
+      <RepoInfo />
+      <Contributors />
     </div>
   );
 }
