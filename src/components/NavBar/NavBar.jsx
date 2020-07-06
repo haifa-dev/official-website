@@ -83,7 +83,7 @@ const NavBar = () => {
 
       <Link to="/ProjectRequest">Request project</Link>
       
-      <Link to="/ProjectCard">Request card</Link>
+      <Link to="/Projects">Projects</Link>
 
       <img
         className={styles.socialButton}

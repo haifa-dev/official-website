@@ -7,13 +7,13 @@ import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import Project from '../pages/Project/Project';
 import TeamCardsGrid from '../TeamCardsGrid/TeamCardsGrid';
 import RequestForm from "../pages/RequestForm/RequestsForm";
-import ProjectCard from "../ProjectCard/ProjectCard";
+import ProjectsPage from "../ProjectCard/ProjectCard";
 
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route exact path="/ProjectRequest" component={RequestForm} />
-    <Route exact path="/ProjectCard" component={ProjectCard} />
+    <Route exact path="/Projects" component={ProjectsPage} />
     <Route exact path="/projects/:id" component={Project} />
     <Route exact path="/project" component={Project} />
     <Route exact path="/members" component={TeamCardsGrid} />
