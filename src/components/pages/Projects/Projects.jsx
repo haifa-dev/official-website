@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import styles from "./projectCard.module.scss";
-import Repo from "./Repo";
-import { getAllRepos } from "../../services/github.service";
+import styles from "./projects.module.scss";
+import Repo from "../../ProjectCard/Repo";
+import { getAllRepos } from "../../../services/github.service";
 
 export default function ProjectCard() {
   const [repos, setRepos] = useState(null);
@@ -9,7 +9,6 @@ export default function ProjectCard() {
   useEffect(() => {
     const getRepos = async () => {
       const data = await getAllRepos();
-      console.log(data)
       setRepos(data);
     };
     getRepos();
@@ -18,10 +17,9 @@ export default function ProjectCard() {
   const Repos = () => {
     if (!repos) {
       return <span className={styles.loading}>Loading...</span>;
+    } else {
+      return repos.map((repo, i) => <Repo key={i} repo={repo} />);
     }
-    return repos.map((repo, i) => {
-      return <Repo key={i} repo={repo} />;
-    });
   };
 
   return (
