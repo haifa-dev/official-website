@@ -1,23 +1,16 @@
 import React, { useState } from "react";
 import styles from "../pages/Projects/projects.module.scss";
-import {
-  getRepoContributers,
-  getRepoIssues,
-} from "../../services/github.service";
+import { getRepoContributers } from "../../services/github.service";
 
 export default function Repo({ repo }) {
-  const [reveal, setReveal] = useState(false);
-  const [loading, setLoading] = useState(false);
-
   const [contributors, setContributors] = useState(null);
-  const [issues, setIssues] = useState(null); //not used yet
+  const [loading, setLoading] = useState(false);
+  const [reveal, setReveal] = useState(false);
 
   const handleClick = async () => {
     if (!contributors) setLoading(true);
     const contributersData = await getRepoContributers(repo.name);
     setContributors(contributersData);
-    const issuesData = await getRepoIssues(repo.name);
-    setIssues(issuesData);
     setReveal(!reveal);
     setLoading(false);
   };
@@ -44,7 +37,6 @@ export default function Repo({ repo }) {
                 {new Date(repo.updated_at).toLocaleDateString("en-il")}
               </span>
             </div>
-            <div></div>
           </div>
         )}
       </div>
