@@ -1,6 +1,44 @@
 const URL = "https://api.github.com";
 const USERNAME = "haifa-dev";
 
+export async function getAllRepos() {
+  try {
+    let response = await fetch(`${URL}/users/${USERNAME}/repos`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/vnd.github.v3+json",
+        Authorization: `Token ${process.env.REACT_APP_GITHUB_TOKEN}`,
+      },
+    });
+    if (!response.ok) throw new Error("Failed to fetch haida dev repos");
+    let data = await response.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+    return { result: false, error: err.message };
+  }
+}
+
+export async function getRepoIssues(repoName) {
+  try {
+    let response = await fetch(`${URL}/repos/${USERNAME}/${repoName}/issues`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/vnd.github.v3+json",
+        Authorization: `Token ${process.env.REACT_APP_GITHUB_TOKEN}`,
+      },
+    });
+    if (!response.ok) throw new Error("Failed to fetch haida dev repos");
+    let data = await response.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+    return { result: false, error: err.message };
+  }
+}
+
 export async function getRepoAsync(repoName) {
   try {
     let response = await fetch(`${URL}/repos/${USERNAME}/${repoName}`, {
@@ -16,11 +54,11 @@ export async function getRepoAsync(repoName) {
     return data;
   } catch (err) {
     console.error(err);
-    return { result: false, error: err.message};
+    return { result: false, error: err.message };
   }
 }
 
-export async function getRepoContributersAsync(repoName) {
+export async function getRepoContributers(repoName) {
   try {
     let response = await fetch(
       `${URL}/repos/${USERNAME}/${repoName}/contributors`,
@@ -38,7 +76,7 @@ export async function getRepoContributersAsync(repoName) {
     return data;
   } catch (err) {
     console.error(err);
-    return { result: false, error: err.message};
+    return { result: false, error: err.message };
   }
 }
 
@@ -56,6 +94,6 @@ export async function getUserReposAsync(userName) {
     return data;
   } catch (err) {
     console.error(err);
-    return { result: false, error: err.message};
+    return { result: false, error: err.message };
   }
 }

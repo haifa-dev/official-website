@@ -4,17 +4,14 @@ import Footer from '../Footer/Footer';
 import NavBar from '../NavBar/NavBar';
 import Home from '../pages/Home/Home';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
-import Project from '../pages/Project/Project';
-import TeamCardsGrid from '../TeamCardsGrid/TeamCardsGrid';
 import RequestForm from "../pages/RequestForm/RequestsForm";
+import Projects from "../pages/Projects/Projects";
 
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route exact path="/ProjectRequest" component={RequestForm} />
-    <Route exact path="/projects/:id" component={Project} />
-    <Route exact path="/project" component={Project} />
-    <Route exact path="/members" component={TeamCardsGrid} />
+    <Route exact path="/Projects" component={Projects} />
     <Route exact path="*" component={NotFoundPage} />
   </Switch>
 )
