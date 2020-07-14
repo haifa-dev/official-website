@@ -1,7 +1,8 @@
 import React from 'react';
+import "./app.scss"
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Footer from '../Footer/Footer';
-import NavBar from '../NavBar/NavBar';
+import Navigation from "../Navigation/Navigation";
 import Home from '../pages/Home/Home';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import RequestForm from "../pages/RequestForm/RequestsForm";
@@ -19,9 +20,7 @@ const Routes = () => (
 const App = () => (
   <BrowserRouter>
     <div className="fixed-top bg-secondary">
-      <div className="container">
-        <NavBar></NavBar>
-      </div>
+        <Navigation />
     </div>
     <Routes />
     <Footer />
