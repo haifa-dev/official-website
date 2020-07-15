@@ -1,13 +1,27 @@
 @import 'variables_functions_mixins';
 @import 'reset.scss';
+ 
+html, body, #root {
+  height: 100%;
+}
 
 body {
   margin: 0;
-  padding: 45px 0 0 0;
   color: #333;
   font-family: 'Helvetica';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.pageContent {
+  height: 100%;
+  padding-top: 56px;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto;
 }
 
 code {
