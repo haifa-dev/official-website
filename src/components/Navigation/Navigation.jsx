@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 
 const Navigation = () => {
   return (
-    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark" fixed="top">
       <Container>
         <Navbar.Brand href="#home" as={Link} to={{ pathname: "/", hash: "#home", state: "home" }}>
           <span style={{color: "green"}}>Haifa</span>
