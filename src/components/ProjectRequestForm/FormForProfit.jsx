@@ -1,6 +1,8 @@
 import React from "react";
-import styles from "./requestForm.module.scss";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 import * as yup from "yup";
 
 export default function FormForProfit({
@@ -13,22 +15,24 @@ export default function FormForProfit({
     <Formik
       initialValues={formState}
       validationSchema={yup.object().shape({
-        businessPlan: yup.string().required("Required field"),
-        linkToDocs: yup
+        isBusinessPlan: yup.boolean(),
+        businessPlan: yup
           .string()
-          .url("Invalid url (e.g: http://example.com)")
-          .required("Required field"),
-        systemDefinition: yup.string().required("Required field"),
-        systemDefinitionFile: yup
-          .string()
-          .url("Invalid url (e.g: http://example.com)")
-          .when("systemDefinition", (systemDefinition, schema) => {
-            return systemDefinition === "yes"
-              ? schema.required("Required field")
-              : schema.notRequired();
+          .when("isBusinessPlan", (isBusinessPlan, schema) => {
+            return isBusinessPlan
+              ? schema.notRequired()
+              : schema.required("Required field").url("Invalid url (e.g: http://example.com)");
           }),
-        CommunityOrProfit: yup.string().required("Required field"),
-        isFunded: yup.string().required("Required field"),
+          isSystemDefined: yup.boolean(),
+        systemDefinition: yup
+          .string()
+          .when("isSystemDefined", (isSystemDefined, schema) => {
+            return isSystemDefined
+              ? schema.notRequired()
+              : schema.required("Required field").url("Invalid url (e.g: http://example.com)");
+          }),
+        communityOrProfit: yup.string().required("Required field"),
+        isFunded: yup.boolean(),
       })}
       onSubmit={(values) => {
         setFormState((prev) => {
@@ -37,133 +41,127 @@ export default function FormForProfit({
         loadNextForm("confirmForm");
       }}
     >
-      <Form className={styles.requestForm}>
-        <div className={styles.inputField}>
-          <label>Is there a long-term business plan?</label>
-          <Field
-            id="haveBusinessPlan"
-            type="radio"
-            name="businessPlan"
-            value="yes"
-          />
-          <label className={styles.labelRadio} htmlFor="haveBusinessPlan">
-            Yes
-          </label>
+      {({ handleSubmit, handleChange, values, touched, errors }) => (
+        <Form noValidate onSubmit={handleSubmit}>
+          <Form.Row>
+            <Form.Group as={Col} sm="8" md="7" controlId="field_1">
+              <Form.Label>Link to a business plan:</Form.Label>
+              <Form.Control
+                type="text"
+                name="businessPlan"
+                value={values.isBusinessPlan ? "" : values.businessPlan}
+                onChange={handleChange}
+                disabled={values.isBusinessPlan ? true : false}
+                isValid={touched.businessPlan && !errors.businessPlan}
+                isInvalid={touched.businessPlan && errors.businessPlan}
+              />
+              <Form.Control.Feedback type="invalid">{errors.businessPlan}</Form.Control.Feedback>
+            </Form.Group>
+          </Form.Row>
+          
+          <Form.Row>  
+            <Form.Group as={Col} sm="8" md="7" controlId="field_2">
+              <Form.Check
+                className="ml-3"
+                custom
+                label="I don't have a business plan"
+                type="checkbox"
+                id="isBusinessPlan"
+                name="isBusinessPlan"
+                value={values.isBusinessPlan}
+                onChange={handleChange}
+                defaultChecked={values.isBusinessPlan ? true : false}
+                />
+            </Form.Group>
+          </Form.Row>
 
-          <Field
-            id="noBusinessPlan"
-            type="radio"
-            name="businessPlan"
-            value="no"
-          />
-          <label className={styles.labelRadio} htmlFor="noBusinessPlan">
-            No
-          </label>
-          <ErrorMessage
-            name="businessPlan"
-            render={(msg) => <span className={styles.formError}>{msg}</span>}
-          />
-        </div>
+          <Form.Row>
+            <Form.Group as={Col} sm="8" md="7" controlId="field_3">
+              <Form.Label>Link to system definition:</Form.Label>
+              <Form.Control
+                type="text"
+                name="systemDefinition"
+                value={values.isSystemDefined ? "" : values.systemDefinition}
+                onChange={handleChange}
+                disabled={values.isSystemDefined ? true : false}
+                isValid={touched.systemDefinition && !errors.systemDefinition}
+                isInvalid={touched.systemDefinition && errors.systemDefinition}
+              />
+              <Form.Control.Feedback type="invalid">{errors.systemDefinition}</Form.Control.Feedback>
+            </Form.Group>
+          </Form.Row>
+          
+          <Form.Row>  
+            <Form.Group as={Col} sm="8" md="7" controlId="field_4">
+              <Form.Check
+                className="ml-3"
+                custom
+                label="I don't have system definition"
+                type="checkbox"
+                id="isSystemDefined"
+                name="isSystemDefined"
+                value={values.isSystemDefined}
+                onChange={handleChange}
+                defaultChecked={values.isSystemDefined ? true : false}
+                />
+            </Form.Group>
+          </Form.Row> 
 
-        <div className={styles.inputField}>
-          <label>
-            Is the system defined properly? (provide link to slides)
-          </label>
-          <Field
-            id="systemDefined"
-            type="radio"
-            name="systemDefinition"
-            value="yes"
-          />
-          <label className={styles.labelRadio} htmlFor="systemDefined">
-            Yes
-          </label>
+          <Form.Row>
+            <Form.Group as={Col} sm="8" md="7"  controlId="field_5" className="mt-3">
+              <Form.Label>Is your business community or profit oriented?</Form.Label>
+              <div className="ml-3 mt-2">
+                <Form.Check type="radio" custom inline>
+                  <Form.Check.Input
+                    type="radio"
+                    id="community"
+                    name="communityOrProfit"
+                    value="community"
+                    onChange={handleChange}
+                    defaultChecked={values.communityOrProfit === "community" ? true : false}
+                    isValid={touched.communityOrProfit && !errors.communityOrProfit}
+                    isInvalid={touched.communityOrProfit && errors.communityOrProfit}
+                   />
+                   <Form.Check.Label htmlFor="community">Community</Form.Check.Label>
+                </Form.Check>
 
-          <Field
-            id="systemNotDefined"
-            type="radio"
-            name="systemDefinition"
-            value="no"
-          />
-          <label className={styles.labelRadio} htmlFor="systemNotDefined">
-            No
-          </label>
+                <Form.Check type="radio" custom inline>
+                  <Form.Check.Input
+                    type="radio"
+                    id="profit"
+                    name="communityOrProfit"
+                    value="profit"
+                    onChange={handleChange}
+                    defaultChecked={values.communityOrProfit === "profit" ? true : false}
+                    isValid={touched.communityOrProfit && !errors.communityOrProfit}
+                    isInvalid={touched.communityOrProfit && errors.communityOrProfit}
+                  />
+                  <Form.Check.Label htmlFor="profit">Profit</Form.Check.Label>
+                </Form.Check>
+              </div>
+            </Form.Group>
+          </Form.Row>
 
-          <label className={styles.inlineLabel} htmlFor="systemDefinitionFile">
-            Add link to file:
-          </label>
-          <Field
-            type="text"
-            id="systemDefinitionFile"
-            name="systemDefinitionFile"
-          />
-          <ErrorMessage
-            name="systemDefinition"
-            render={(msg) => <span className={styles.formError}>{msg}</span>}
-          />
-          <ErrorMessage
-            name="systemDefinitionFile"
-            render={(msg) => <span className={styles.formError}>{msg}</span>}
-          />
-        </div>
+          <Form.Row>  
+            <Form.Group as={Col} sm="8" md="7" controlId="field_6">
+              <Form.Check
+                className="mt-3"
+                custom
+                label="The project has funding"
+                type="checkbox"
+                id="isFunded"
+                name="isFunded"
+                value={values.isFunded}
+                onChange={handleChange}
+                defaultChecked={values.isFunded ? true : false}
+                />
+            </Form.Group>
+          </Form.Row>
 
-        <div className={styles.inputField}>
-          <label>Community or profit oriented?</label>
-          <Field
-            id="forCommunity"
-            type="radio"
-            name="CommunityOrProfit"
-            value="community"
-          />
-          <label className={styles.labelRadio} htmlFor="forCommunity">
-            Community oriented
-          </label>
-
-          <Field
-            id="forProfit"
-            type="radio"
-            name="CommunityOrProfit"
-            value="profit"
-          />
-          <label className={styles.labelRadio} htmlFor="forProfit">
-            For profit
-          </label>
-          <ErrorMessage
-            name="CommunityOrProfit"
-            render={(msg) => <span className={styles.formError}>{msg}</span>}
-          />
-        </div>
-
-        <div className={styles.inputField}>
-          <label>Do you have funding?</label>
-          <Field id="funded" type="radio" name="isFunded" value="yes" />
-          <label className={styles.labelRadio} htmlFor="funded">
-            Yes
-          </label>
-
-          <Field id="notFunded" type="radio" name="isFunded" value="no" />
-          <label className={styles.labelRadio} htmlFor="notFunded">
-            No
-          </label>
-          <ErrorMessage
-            name="isFunded"
-            render={(msg) => <span className={styles.formError}>{msg}</span>}
-          />
-        </div>
-
-        <div className={styles.inputField}>
-          <label htmlFor="linkToDoc">
-            Link to doc that pitches the project:
-          </label>
-          <Field id="linkToDoc" type="text" name="linkToDocs" />
-          <ErrorMessage
-            name="linkToDocs"
-            render={(msg) => <span className={styles.formError}>{msg}</span>}
-          />
-        </div>
-        <button onClick={loadPreviousForm}>Previous</button>
-        <button type="submit">Confirm submission</button>
-      </Form>
+          <Button onClick={loadPreviousForm} variant="outline-primary" className="mr-2">Previous</Button>
+          <Button type="submit">Confirm submission</Button>
+        </Form>
+      )}
     </Formik>
   );
 }
