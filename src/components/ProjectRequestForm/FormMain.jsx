@@ -13,25 +13,24 @@ export default function RequestForm() {
     about: "",
     businessType: "",
     description: "",
-    isWebSite: "",
+    isWebSite: false,
     webAddress: "",
     tasks: "",
-    isBusinessPlan: "",
+    isBusinessPlan: false,
     businessPlan: "",
-    isSystemDefined: "",
+    isSystemDefined: false,
     systemDefinition: "",
     communityOrProfit: "",
     isFunded: "",
   });
   const [formtype, setFormType] = useState("formUser");
-
   const loadNextForm = (formType) => setFormType(formType);
   const loadPreviousForm = (e) => {
     e.preventDefault();
     setFormType("formUser");
   };
 
-  switch ("confirmForm") {
+  switch (formtype) {
     case "formUser":
       return (
         <FormUser
