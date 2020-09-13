@@ -1,6 +1,8 @@
 import React from "react";
-import styles from "./requestForm.module.scss";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik } from "formik";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 import * as yup from "yup";
 
 export default function FormNonProfit({
@@ -13,18 +15,19 @@ export default function FormNonProfit({
     <Formik
       initialValues={formState}
       validationSchema={yup.object().shape({
-        nonProfitDesc: yup.string().required("Required field"),
-        nonProfitWebSite: yup.string().required("Required field"),
-        nonProfitWebAddress: yup.string()
-          .url("Invalid url (e.g: http://example.com)")
-          .when("nonProfitWebSite", (nonProfitWebSite, schema) => {
-            return nonProfitWebSite === "yes"
-              ? schema.required("Required field")
-              : schema.notRequired();
+        description: yup.string().required("Required field"),
+        isWebSite: yup.boolean(),
+        webAddress: yup
+          .string()
+          .when("isWebSite", (isWebSite, schema) => {
+            return isWebSite 
+              ? schema.notRequired()
+              : schema.required("Required field").url("Invalid url (e.g: http://example.com)");
           }),
-        nonProfitTasks: yup.string()
+          tasks: yup
+          .string()
           .required("Required field")
-          .min(50, "minimum 50 characters"),
+          .min(30, "minimum 30 characters"),
       })}
       onSubmit={(values) => {
         setFormState((prev) => {
@@ -33,74 +36,75 @@ export default function FormNonProfit({
         loadNextForm("confirmForm");
       }}
     >
-      <Form className={styles.requestForm}>
-        <div className={styles.inputField}>
-          <label htmlFor="nonProfitDesc">
-            What does your organization stand for?
-          </label>
-          <Field id="nonProfitDesc" name="nonProfitDesc" type="text" />
-          <ErrorMessage
-            name="nonProfitDesc"
-            render={(msg) => <span className={styles.formError}>{msg}</span>}
-          />
-        </div>
+      {({ handleSubmit, handleChange, values, touched, errors }) => (
+        <Form noValidate onSubmit={handleSubmit}>
+          <Form.Row>
+            <Form.Group as={Col} sm="10" md="8" controlId="field_1">
+              <Form.Label>Shortly describe what does your organization stand for:</Form.Label>
+              <Form.Control
+                type="text"
+                name="description"
+                value={values.description}
+                onChange={handleChange}
+                isValid={touched.description && !errors.description}
+                isInvalid={touched.description && errors.description}
+              />
+              <Form.Control.Feedback type="invalid">{errors.description}</Form.Control.Feedback>
+            </Form.Group>
+          </Form.Row>
 
-        <div className={styles.inputField}>
-          <label>Do you already have website?</label>
-          <Field
-            id="nonProfitWebSite"
-            type="radio"
-            name="nonProfitWebSite"
-            value="yes"
-          />
-          <label className={styles.labelRadio} htmlFor="nonProfitWebSite">
-            Yes
-          </label>
+          <Form.Row>
+            <Form.Group as={Col} sm="10" md="8" controlId="field_2">
+              <Form.Label>Link to website:</Form.Label>
+              <Form.Control
+                type="text"
+                name="webAddress"
+                value={values.isWebSite ? "" : values.webAddress}
+                onChange={handleChange}
+                disabled={values.isWebSite ? true : false}
+                isValid={touched.webAddress && !errors.webAddress}
+                isInvalid={touched.webAddress && errors.webAddress}
+              />
+              <Form.Control.Feedback type="invalid">{errors.webAddress}</Form.Control.Feedback>
+            </Form.Group>
+          </Form.Row>
+          
+          <Form.Row>  
+            <Form.Group as={Col} sm="5" md="4" controlId="field_3">
+              <Form.Check
+                className="ml-3"
+                custom
+                label="I don't have a website"
+                type="checkbox"
+                id="isWebSite"
+                name="isWebSite"
+                value={values.isWebSite}
+                onChange={handleChange}
+                defaultChecked={values.isWebSite ? true : false}
+                />
+            </Form.Group>
+          </Form.Row>
 
-          <Field
-            id="forProfitWebSite"
-            type="radio"
-            name="nonProfitWebSite"
-            value="no"
-          />
-          <label className={styles.labelRadio} htmlFor="forProfitWebSite">
-            No
-          </label>
+          <Form.Row>
+            <Form.Group as={Col} sm="10" md="8" controlId="field_4">
+              <Form.Label>Tell us about what needs to be done:</Form.Label>
+              <Form.Control
+                as="textarea"
+                name="tasks"
+                value={values.tasks}
+                rows="5"
+                onChange={handleChange}
+                isValid={touched.tasks && !errors.tasks}
+                isInvalid={touched.tasks && errors.tasks}
+              />
+              <Form.Control.Feedback type="invalid">{errors.tasks}</Form.Control.Feedback>
+            </Form.Group>
+          </Form.Row>
 
-          <label className={styles.inlineLabel} htmlFor="nonProfitWebAddress">
-            Link to website:
-          </label>
-          <Field type="text" name="nonProfitWebAddress" />
-          <ErrorMessage
-            name="nonProfitWebSite"
-            render={(msg) => <span className={styles.formError}>{msg}</span>}
-          />
-          <ErrorMessage
-            name="nonProfitWebAddress"
-            render={(msg) => <span className={styles.formError}>{msg}</span>}
-          />
-        </div>
-
-        <div className={styles.inputField}>
-          <label htmlFor="nonProfitTasks">
-            Describe what needs to be done:
-          </label>
-          <Field
-            as="textarea"
-            maxLength="300"
-            cols="30"
-            rows="5"
-            id="nonProfitTasks"
-            name="nonProfitTasks"
-          />
-          <ErrorMessage
-            name="nonProfitTasks"
-            render={(msg) => <span className={styles.formError}>{msg}</span>}
-          />
-        </div>
-        <button onClick={loadPreviousForm}>Previous</button>
-        <button type="submit">Confirm submission</button>
-      </Form>
+          <Button onClick={loadPreviousForm} variant="outline-primary" className="mr-2">Previous</Button>
+          <Button type="submit">Confirm submission</Button>
+        </Form>
+      )}
     </Formik>
   );
 }

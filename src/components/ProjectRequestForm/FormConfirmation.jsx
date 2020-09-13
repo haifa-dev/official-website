@@ -1,8 +1,24 @@
 import React from "react";
-import styles from "./requestForm.module.scss";
+import Button from "react-bootstrap/Button";
 
 export default function FormConfirmation({
-  formState,
+  formState: {
+    name,
+    email,
+    phone,
+    about,
+    businessType,
+    description,
+    isWebSite,
+    webAddress,
+    tasks,
+    isBusinessPlan,
+    businessPlan,
+    isSystemDefined,
+    systemDefinition,
+    communityOrProfit,
+    isFunded,
+  },
   loadPreviousForm,
   loadNextForm,
 }) {
@@ -26,146 +42,122 @@ export default function FormConfirmation({
     loadNextForm(null);
   };
 
-  const form = {
-    fullName: formState.fullName,
-    email: formState.email,
-    phoneNumber: formState.phoneNumber,
-    aboutProject: formState.aboutProject,
-    businessType: formState.businessType,
-  };
-
-  if (form.businessType === "nonProfit") {
-    form.nonProfitDesc = formState.nonProfitDesc;
-    form.nonProfitWebSite = formState.nonProfitWebSite;
-    form.nonProfitWebAddress = formState.nonProfitWebAddress;
-    form.nonProfitTasks = formState.nonProfitTasks;
+  let form = {
+    name,
+    email,
+    phone,
+    about,
+  }
+  if (businessType === "nonProfit") {
+    form = {
+      ...form,
+      description,
+      webAddress,
+      tasks,
+    };
   } else {
-    form.businessPlan = formState.businessPlan;
-    form.linkToDocs = formState.linkToDocs;
-    form.systemDefinition = formState.systemDefinition;
-    form.systemDefinitionFile = formState.systemDefinitionFile;
-    form.CommunityOrProfit = formState.CommunityOrProfit;
-    form.isFunded = formState.isFunded;
+    form = {
+      ...form,
+      businessPlan,
+      systemDefinition,
+      communityOrProfit,
+      isFunded,
+    };
   }
 
+  const UserDetails = () => {
+    return (
+      <>
+        <tr>
+          <th>Name:</th>
+          <td>{name}</td>
+        </tr>
+
+        <tr>
+          <th>Email:</th>
+          <td>{email}</td>
+        </tr>
+
+        <tr>
+          <th>Phone number:</th>
+          <td>{phone}</td>
+        </tr>
+
+        <tr>
+          <th>About project:</th>
+          <td>{about}</td>
+        </tr>
+      </>
+    );
+  };
+
+  const NonProfitDetails = () => {
+    return (
+      <>
+        <tr>
+          <th>Organization description:</th>
+          <td>{description}</td>
+        </tr>
+        
+        <tr>
+          <th>Organization website address:</th>
+          <td>{!isWebSite ? webAddress : "No website"}</td>
+        </tr>
+
+        <tr>
+          <th>What needs to be done:</th>
+          <td>{tasks}</td>
+        </tr>
+      </>
+    );
+  };
+
+  const ForProfitDetails = () => {
+    return (
+      <>
+        <tr>
+          <th>Link to business plan:</th>
+          <td>{!isBusinessPlan ? businessPlan : "No business plan"}</td>
+        </tr>
+        
+        <tr>
+          <th>Link to system definition:</th>
+          <td>{!isSystemDefined ? systemDefinition : "No system definition"}</td>
+        </tr>
+
+        <tr>
+          <th>Community or profit oriented:</th>
+          <td>{communityOrProfit === "community" ? "Community oriented" : "Profit oriented"}</td>
+        </tr>
+
+        <tr>
+          <th>Is your business funded:</th>
+          <td>{isFunded ? "Yes" : "No"}</td>
+        </tr>
+      </>
+    );
+  };
+
   return (
-    <form className={styles.requestForm} onSubmit={handleSubmit}>
-      <h2>please confirm form details:</h2>
-
-      <div className={styles.confirmationField}>
-        <span className={styles.confirmationKey}>Name:</span>
-        <span className={styles.confirmationValue}>{form.fullName}</span>
-      </div>
-
-      <div className={styles.confirmationField}>
-        <span className={styles.confirmationKey}>Email:</span>
-        <span className={styles.confirmationValue}>{form.email}</span>
-      </div>
-
-      <div className={styles.confirmationField}>
-        <span className={styles.confirmationKey}>Phone number:</span>
-        <span className={styles.confirmationValue}>{form.phoneNumber}</span>
-      </div>
-
-      <div className={styles.confirmationField}>
-        <span className={styles.confirmationKey}>Business Type:</span>
-        <span className={styles.confirmationValue}>{form.businessType}</span>
-      </div>
-
-      <div className={styles.confirmationField}>
-        <span className={styles.confirmationKey}>About your project:</span>
-        <span className={styles.confirmationValue}>{form.aboutProject}</span>
-      </div>
-
-      {form.businessType === "nonProfit" ? (
-        <>
-          <div className={styles.confirmationField}>
-            <span className={styles.confirmationKey}>
-              Organization description:
-            </span>
-            <span className={styles.confirmationValue}>
-              {form.nonProfitDesc}
-            </span>
-          </div>
-
-          <div className={styles.confirmationField}>
-            <span className={styles.confirmationKey}>
-              Does your organization have a website:
-            </span>
-            <span className={styles.confirmationValue}>
-              {form.nonProfitWebSite}
-            </span>
-          </div>
-
-          <div className={styles.confirmationField}>
-            <span className={styles.confirmationKey}>
-              Organization website address:
-            </span>
-            <span className={styles.confirmationValue}>
-              {form.nonProfitWebAddress}
-            </span>
-          </div>
-
-          <div className={styles.confirmationField}>
-            <span className={styles.confirmationKey}>
-              What needs to be done:
-            </span>
-            <span className={styles.confirmationValue}>
-              {form.nonProfitTasks}
-            </span>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className={styles.confirmationField}>
-            <span className={styles.confirmationKey}>Your business plan:</span>
-            <span className={styles.confirmationValue}>
-              {form.businessPlan}
-            </span>
-          </div>
-
-          <div className={styles.confirmationField}>
-            <span className={styles.confirmationKey}>Link to docs:</span>
-            <span className={styles.confirmationValue}>{form.linkToDocs}</span>
-          </div>
-
-          <div className={styles.confirmationField}>
-            <span className={styles.confirmationKey}>
-              Do you have a system definition:
-            </span>
-            <span className={styles.confirmationValue}>
-              {form.systemDefinition}
-            </span>
-          </div>
-
-          <div className={styles.confirmationField}>
-            <span className={styles.confirmationKey}>
-              Link to system definition file:
-            </span>
-            <span className={styles.confirmationValue}>
-              {form.systemDefinitionFile}
-            </span>
-          </div>
-
-          <div className={styles.confirmationField}>
-            <span className={styles.confirmationKey}>
-              Is your business community or profit orianted:
-            </span>
-            <span className={styles.confirmationValue}>
-              {form.CommunityOrProfit}
-            </span>
-          </div>
-
-          <div className={styles.confirmationField}>
-            <span className={styles.confirmationKey}>
-              Is your business funded:
-            </span>
-            <span className={styles.confirmationValue}>{form.isFunded}</span>
-          </div>
-        </>
-      )}
-      <button onClick={loadPreviousForm}>Edit fields</button>
-      <button type="submit">Submit</button>
-    </form>
+    <>
+      <table>
+        <tbody>
+        <UserDetails />
+        {businessType === "nonProfit" ? (
+          <NonProfitDetails />
+        ) : (
+          <ForProfitDetails />
+        )}
+        </tbody>
+      </table>
+      <Button
+        onClick={loadPreviousForm}
+        variant="outline-primary"
+        className="mr-2"
+      >
+        Edit fields
+      </Button>
+      <Button onClick={handleSubmit}>Submit</Button>
+    </>
   );
 }

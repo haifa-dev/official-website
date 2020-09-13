@@ -7,24 +7,23 @@ import FormSubmitted from "./FormSubmitted";
 
 export default function RequestForm() {
   const [formState, setFormState] = useState({
-    fullName: "",
+    name: "",
     email: "",
-    phoneNumber: "",
-    aboutProject: "",
+    phone: "",
+    about: "",
     businessType: "",
-    nonProfitDesc: "",
-    nonProfitWebSite: "",
-    nonProfitWebAddress: "",
-    nonProfitTasks: "",
+    description: "",
+    isWebSite: false,
+    webAddress: "",
+    tasks: "",
+    isBusinessPlan: false,
     businessPlan: "",
-    linkToDocs: "",
+    isSystemDefined: false,
     systemDefinition: "",
-    systemDefinitionFile: "",
-    CommunityOrProfit: "",
+    communityOrProfit: "",
     isFunded: "",
   });
   const [formtype, setFormType] = useState("formUser");
-
   const loadNextForm = (formType) => setFormType(formType);
   const loadPreviousForm = (e) => {
     e.preventDefault();
