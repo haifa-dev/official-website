@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
+import styles from './FormStyles.module.scss';
+import { submitForm } from '../../services/requestForm.service';
 
 export default function FormConfirmation({
   formState: {
@@ -22,24 +24,19 @@ export default function FormConfirmation({
   loadPreviousForm,
   loadNextForm,
 }) {
-  const postForProfit = async (form) => {
-    console.table(form);
-  };
 
-  const postNonProfit = async (form) => {
-    console.table(form);
-  };
+  const [isBusy, setIsBusy] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (form.businessType === "nonProfit") {
-      postNonProfit(form);
-    } else if (form.businessType === "forProfit") {
-      postForProfit(form);
-    } else {
-      throw new console.error("business type doesn't match");
+    setIsBusy(true);
+    try {
+      await submitForm(form.businessType === "forProfit");
+      loadNextForm(null);
+    } catch (err) {
+      console.log(`Error submitting form: ${err.error}`);
     }
-    loadNextForm(null);
+    setIsBusy(false);
   };
 
   let form = {
@@ -138,6 +135,14 @@ export default function FormConfirmation({
     );
   };
 
+  const LoadingDots = () => {
+    const dots = [];
+    for (let i=0; i<10; i++) {
+      dots.push(<div>•</div>);
+    }
+    return <div className={styles.submitAnim}>{dots}</div>;
+  }
+
   return (
     <>
       <table>
@@ -150,14 +155,18 @@ export default function FormConfirmation({
         )}
         </tbody>
       </table>
-      <Button
-        onClick={loadPreviousForm}
-        variant="outline-primary"
-        className="mr-2"
-      >
-        Edit fields
-      </Button>
-      <Button onClick={handleSubmit}>Submit</Button>
+      { 
+        isBusy
+        ? <LoadingDots/> 
+        : [
+          <Button onClick={loadPreviousForm}
+                  variant="outline-primary"
+                  className="mr-2" >
+            Edit fields
+          </Button>,
+          <Button onClick={handleSubmit}>Submit</Button>
+        ]
+      }
     </>
   );
 }
