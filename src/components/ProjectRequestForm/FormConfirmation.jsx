@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import styles from './FormStyles.module.scss';
 import { submitForm } from '../../services/requestForm.service';
+import { Alert } from "react-bootstrap";
 
 export default function FormConfirmation({
   formState: {
@@ -26,15 +27,18 @@ export default function FormConfirmation({
 }) {
 
   const [isBusy, setIsBusy] = useState(false);
+  const [response, setResponse] = useState({result: true});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsBusy(true);
-    try {
-      await submitForm(form.businessType === "forProfit");
+    var response = await submitForm(form, businessType !== "nonProfit");
+    if (response.result) {
       loadNextForm(null);
-    } catch (err) {
-      console.log(`Error submitting form: ${err.error}`);
+    }
+    else{
+      console.log(`Error submitting form: ${response.error}`);
+      setResponse(response);
     }
     setIsBusy(false);
   };
@@ -155,18 +159,25 @@ export default function FormConfirmation({
         )}
         </tbody>
       </table>
-      { 
-        isBusy
-        ? <LoadingDots/> 
-        : [
-          <Button onClick={loadPreviousForm}
-                  variant="outline-primary"
-                  className="mr-2" >
-            Edit fields
-          </Button>,
-          <Button onClick={handleSubmit}>Submit</Button>
-        ]
-      }
+      <div className={styles.bottomContainer}>
+        {
+          !response.result // The result is false
+          ? <Alert variant="danger">{response.error}</Alert> 
+          : null
+        }
+        { 
+          isBusy
+          ? <LoadingDots/> 
+          : <div className={styles.bottomButtons}>
+              <Button onClick={loadPreviousForm}
+                      variant="outline-primary"
+                      className="mr-2" >
+                Edit fields
+              </Button>
+              <Button onClick={handleSubmit} disabled={!response.result}>Submit</Button>
+            </div>
+        }
+      </div>
     </>
   );
 }

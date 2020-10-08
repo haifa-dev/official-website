@@ -1,5 +1,17 @@
 /* Specific styles for request form */
 
+
+.bottomContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bottomButtons {
+  display: flex;
+  flex-direction: row;
+}
+
 .submitAnim {
     display: flex;
     flex-direction: row;
@@ -11,7 +23,6 @@
       }
     }
   }
-  
   
   @keyframes loading {
     0% { transform: scale(1.4); }
