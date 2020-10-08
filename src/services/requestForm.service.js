@@ -18,6 +18,12 @@ function mapErrorMessage(errorMsg) {
 
 export async function submitForm(formBody, isForProfit) {
     try {
+
+        if (!formBody.webAddress.length) {
+            // the server won't approve empty string.
+            delete formBody.webAddress;
+        }
+
         let response = await fetch(`${URL}/${isForProfit? 'profitableProjectReqs' : 'charitableProjectReqs'}`, {
             method: "POST",
             body: JSON.stringify(formBody),
@@ -25,10 +31,15 @@ export async function submitForm(formBody, isForProfit) {
                 "Content-Type": "application/json"
             }
         });
-        if (!response.ok) throw new Error(
-            mapErrorMessage((await response.json()).message)
-        );
+
+        if (!response.ok) {
+            const responseJson = await response.json();
+            console.log(responseJson.message); // left intentionally for sergway
+            throw new Error(mapErrorMessage(responseJson.message));
+        }
+
         return { result: true };
+
     } catch (err) {
         return { result: false, error: err.message };
     }

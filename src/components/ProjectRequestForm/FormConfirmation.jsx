@@ -142,7 +142,7 @@ export default function FormConfirmation({
   const LoadingDots = () => {
     const dots = [];
     for (let i=0; i<10; i++) {
-      dots.push(<div>•</div>);
+      dots.push(<div key={`dots-${i}`}>•</div>);
     }
     return <div className={styles.submitAnim}>{dots}</div>;
   }
