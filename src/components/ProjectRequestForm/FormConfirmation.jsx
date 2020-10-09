@@ -37,7 +37,6 @@ export default function FormConfirmation({
       loadNextForm(null);
     }
     else{
-      console.log(`Error submitting form: ${response.error}`);
       setResponse(response);
     }
     setIsBusy(false);
@@ -69,22 +68,22 @@ export default function FormConfirmation({
   const UserDetails = () => {
     return (
       <>
-        <tr>
+        <tr className={response.error?.fieldName === "name"? "alert-danger" : null}>
           <th>Name:</th>
           <td>{name}</td>
         </tr>
 
-        <tr>
+        <tr className={response.error?.fieldName === "email"? "alert-danger" : null}>
           <th>Email:</th>
           <td>{email}</td>
         </tr>
 
-        <tr>
+        <tr className={response.error?.fieldName === "phone"? "alert-danger" : null}>
           <th>Phone number:</th>
           <td>{phone}</td>
         </tr>
 
-        <tr>
+        <tr className={response.error?.fieldName === "about"? "alert-danger" : null}>
           <th>About project:</th>
           <td>{about}</td>
         </tr>
@@ -95,17 +94,17 @@ export default function FormConfirmation({
   const NonProfitDetails = () => {
     return (
       <>
-        <tr>
+        <tr className={response.error?.fieldName === "description"? "alert-danger" : null}>
           <th>Organization description:</th>
           <td>{description}</td>
         </tr>
         
-        <tr>
+        <tr className={response.error?.fieldName === "webAddress"? "alert-danger" : null}>
           <th>Organization website address:</th>
           <td>{!isWebSite ? webAddress : "No website"}</td>
         </tr>
 
-        <tr>
+        <tr className={response.error?.fieldName === "tasks"? "alert-danger" : null}>
           <th>What needs to be done:</th>
           <td>{tasks}</td>
         </tr>
@@ -116,22 +115,22 @@ export default function FormConfirmation({
   const ForProfitDetails = () => {
     return (
       <>
-        <tr>
+        <tr className={response.error?.fieldName === "businessPlan"? "alert-danger" : null}>
           <th>Link to business plan:</th>
           <td>{!isBusinessPlan ? businessPlan : "No business plan"}</td>
         </tr>
         
-        <tr>
+        <tr className={response.error?.fieldName === "systemDefinition"? "alert-danger" : null}>
           <th>Link to system definition:</th>
           <td>{!isSystemDefined ? systemDefinition : "No system definition"}</td>
         </tr>
 
-        <tr>
+        <tr className={response.error?.fieldName === "communityOrProfit"? "alert-danger" : null}>
           <th>Community or profit oriented:</th>
           <td>{communityOrProfit === "community" ? "Community oriented" : "Profit oriented"}</td>
         </tr>
 
-        <tr>
+        <tr className={response.error?.fieldName === "isFunded"? "alert-danger" : null}>
           <th>Is your business funded:</th>
           <td>{isFunded ? "Yes" : "No"}</td>
         </tr>
@@ -144,7 +143,7 @@ export default function FormConfirmation({
     for (let i=0; i<10; i++) {
       dots.push(<div key={`dots-${i}`}>•</div>);
     }
-    return <div className={styles.submitAnim}>{dots}</div>;
+    return <div className={styles.loadingDots}>{dots}</div>;
   }
 
   return (
@@ -152,17 +151,19 @@ export default function FormConfirmation({
       <table>
         <tbody>
         <UserDetails />
-        {businessType === "nonProfit" ? (
-          <NonProfitDetails />
-        ) : (
-          <ForProfitDetails />
-        )}
+        {
+          businessType === "nonProfit" 
+          ? <NonProfitDetails /> 
+          : <ForProfitDetails />
+        }
         </tbody>
       </table>
       <div className={styles.bottomContainer}>
         {
           !response.result // The result is false
-          ? <Alert variant="danger">{response.error}</Alert> 
+          ? <Alert className={styles.errorMessage} variant="danger">
+              {response.error.text.split("<br>").map(str => <span>{str}</span>)}
+            </Alert> 
           : null
         }
         { 

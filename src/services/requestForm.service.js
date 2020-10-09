@@ -1,46 +1,53 @@
 const URL = "https://haifa-dev.herokuapp.com/api/v1";
 
-const errorMessages= {
+const errorMessages = {
     name: "You forgot to fill your name!",
-    email: "How can we contact you without an email?",
-    phone: "How can we contact you without a phone number?",
+    email: "How can we contact you without a valid email?",
+    phone: "Something in your phone number doesn't add up.",
     about: "You forgot to provide details about your project!",
     description: "You forgot to provide details about your organization!",
     webAddress: "You should never see this error message. Like, never.",
-    tasks: "You haven't told us what needs to be done!"
+    tasks: "You haven't told us what needs to be done!",
+    server: "Our server had a little whoopsie. Please press 'Edit fields', make sure the details are correct, and try again.<br>If this issue persists, contact haifa.devs@gmail.com with the following error code: "
 };
 
-function mapErrorMessage(errorMsg) {
-    if (errorMsg.startsWith('"')) {
-        return errorMessages[/"(.*?)"/g.exec(errorMsg)[1]];
+function translateErrorMessage(errorMsg, statusCode) {
+    // The following regex extracts "name" 
+    // from '"name" must not be empty'
+    const regexResult = /^"(.*?)"/.exec(errorMsg);
+
+    if (regexResult) {
+        // The 2nd item is always the result without the 
+        // double quotes, while the 1st includes the quotes
+        return { fieldName: regexResult[1], text: errorMessages[regexResult[1]] }; 
+    } else {
+        // There's no match (exec returns null)
+        // meaning it's an internal server error
+        return { text: `${errorMessages.server}${statusCode}` };
     }
 }
 
 export async function submitForm(formBody, isForProfit) {
-    try {
 
-        if (!formBody.webAddress.length) {
-            // the server won't approve empty string.
-            delete formBody.webAddress;
-        }
-
-        let response = await fetch(`${URL}/${isForProfit? 'profitableProjectReqs' : 'charitableProjectReqs'}`, {
-            method: "POST",
-            body: JSON.stringify(formBody),
-            headers:{
-                "Content-Type": "application/json"
-            }
-        });
-
-        if (!response.ok) {
-            const responseJson = await response.json();
-            console.log(responseJson.message); // left intentionally for sergway
-            throw new Error(mapErrorMessage(responseJson.message));
-        }
-
-        return { result: true };
-
-    } catch (err) {
-        return { result: false, error: err.message };
+    if (!formBody.webAddress.length) {
+        // the server won't approve empty string.
+        delete formBody.webAddress;
     }
+
+    let response = await fetch(`${URL}/${isForProfit? 'profitableProjectReqs' : 'charitableProjectReqs'}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formBody),
+    });
+
+    if (!response.ok) {
+        const responseJson = await response.json();
+        console.log(responseJson.message); // left intentionally for sergway
+        return { 
+            result: false, 
+            error: translateErrorMessage(responseJson.message, response.status) 
+        };
+    }
+
+    return { result: true };
 }

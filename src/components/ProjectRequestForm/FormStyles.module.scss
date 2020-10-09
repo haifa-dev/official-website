@@ -12,10 +12,16 @@
   flex-direction: row;
 }
 
-.submitAnim {
+.errorMessage {
+  display: flex;
+  flex-direction: column;
+}
+
+.loadingDots {
     display: flex;
     flex-direction: row;
     font-size: 30px;
+    color: green;
     @for $i from 1 through 10 {
       div:nth-child(#{$i}) {
         animation: loading 1s infinite alternate linear;
