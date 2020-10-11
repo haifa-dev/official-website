@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import styles from './FormStyles.module.scss';
 import { submitForm } from '../../services/requestForm.service';
+import { Alert } from "react-bootstrap";
 
 export default function FormConfirmation({
   formState: {
@@ -26,15 +27,17 @@ export default function FormConfirmation({
 }) {
 
   const [isBusy, setIsBusy] = useState(false);
+  const [response, setResponse] = useState({result: true});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsBusy(true);
-    try {
-      await submitForm(form.businessType === "forProfit");
+    var response = await submitForm(form, businessType !== "nonProfit");
+    if (response.result) {
       loadNextForm(null);
-    } catch (err) {
-      console.log(`Error submitting form: ${err.error}`);
+    }
+    else{
+      setResponse(response);
     }
     setIsBusy(false);
   };
@@ -65,22 +68,22 @@ export default function FormConfirmation({
   const UserDetails = () => {
     return (
       <>
-        <tr>
+        <tr className={response.error?.fieldName === "name"? "alert-danger" : null}>
           <th>Name:</th>
           <td>{name}</td>
         </tr>
 
-        <tr>
+        <tr className={response.error?.fieldName === "email"? "alert-danger" : null}>
           <th>Email:</th>
           <td>{email}</td>
         </tr>
 
-        <tr>
+        <tr className={response.error?.fieldName === "phone"? "alert-danger" : null}>
           <th>Phone number:</th>
           <td>{phone}</td>
         </tr>
 
-        <tr>
+        <tr className={response.error?.fieldName === "about"? "alert-danger" : null}>
           <th>About project:</th>
           <td>{about}</td>
         </tr>
@@ -91,17 +94,17 @@ export default function FormConfirmation({
   const NonProfitDetails = () => {
     return (
       <>
-        <tr>
+        <tr className={response.error?.fieldName === "description"? "alert-danger" : null}>
           <th>Organization description:</th>
           <td>{description}</td>
         </tr>
         
-        <tr>
+        <tr className={response.error?.fieldName === "webAddress"? "alert-danger" : null}>
           <th>Organization website address:</th>
           <td>{!isWebSite ? webAddress : "No website"}</td>
         </tr>
 
-        <tr>
+        <tr className={response.error?.fieldName === "tasks"? "alert-danger" : null}>
           <th>What needs to be done:</th>
           <td>{tasks}</td>
         </tr>
@@ -112,22 +115,22 @@ export default function FormConfirmation({
   const ForProfitDetails = () => {
     return (
       <>
-        <tr>
+        <tr className={response.error?.fieldName === "businessPlan"? "alert-danger" : null}>
           <th>Link to business plan:</th>
           <td>{!isBusinessPlan ? businessPlan : "No business plan"}</td>
         </tr>
         
-        <tr>
+        <tr className={response.error?.fieldName === "systemDefinition"? "alert-danger" : null}>
           <th>Link to system definition:</th>
           <td>{!isSystemDefined ? systemDefinition : "No system definition"}</td>
         </tr>
 
-        <tr>
+        <tr className={response.error?.fieldName === "communityOrProfit"? "alert-danger" : null}>
           <th>Community or profit oriented:</th>
           <td>{communityOrProfit === "community" ? "Community oriented" : "Profit oriented"}</td>
         </tr>
 
-        <tr>
+        <tr className={response.error?.fieldName === "isFunded"? "alert-danger" : null}>
           <th>Is your business funded:</th>
           <td>{isFunded ? "Yes" : "No"}</td>
         </tr>
@@ -138,9 +141,9 @@ export default function FormConfirmation({
   const LoadingDots = () => {
     const dots = [];
     for (let i=0; i<10; i++) {
-      dots.push(<div>•</div>);
+      dots.push(<div key={`dots-${i}`}>•</div>);
     }
-    return <div className={styles.submitAnim}>{dots}</div>;
+    return <div className={styles.loadingDots}>{dots}</div>;
   }
 
   return (
@@ -148,25 +151,34 @@ export default function FormConfirmation({
       <table>
         <tbody>
         <UserDetails />
-        {businessType === "nonProfit" ? (
-          <NonProfitDetails />
-        ) : (
-          <ForProfitDetails />
-        )}
+        {
+          businessType === "nonProfit" 
+          ? <NonProfitDetails /> 
+          : <ForProfitDetails />
+        }
         </tbody>
       </table>
-      { 
-        isBusy
-        ? <LoadingDots/> 
-        : [
-          <Button onClick={loadPreviousForm}
-                  variant="outline-primary"
-                  className="mr-2" >
-            Edit fields
-          </Button>,
-          <Button onClick={handleSubmit}>Submit</Button>
-        ]
-      }
+      <div className={styles.bottomContainer}>
+        {
+          !response.result // The result is false
+          ? <Alert className={styles.errorMessage} variant="danger">
+              {response.error.text.split("<br>").map(str => <span>{str}</span>)}
+            </Alert> 
+          : null
+        }
+        { 
+          isBusy
+          ? <LoadingDots/> 
+          : <div className={styles.bottomButtons}>
+              <Button onClick={loadPreviousForm}
+                      variant="outline-primary"
+                      className="mr-2" >
+                Edit fields
+              </Button>
+              <Button onClick={handleSubmit} disabled={!response.result}>Submit</Button>
+            </div>
+        }
+      </div>
     </>
   );
 }
