@@ -7,6 +7,10 @@ const errorMessages = {
     about: "You forgot to provide details about your project!",
     description: "You forgot to provide details about your organization!",
     webAddress: "You should never see this error message. Like, never.",
+    businessPlan: "You must provide a business plan to work with us.",
+    systemDefinition: "It seems you did not provide a system definition link.",
+    communityOrProfit: "You must be community or profit oriented, stop messing with our code!",
+    isFunded: "You are either funded or not - can't be anything else",
     tasks: "You haven't told us what needs to be done!",
     server: "Our server had a little whoopsie. Please press 'Edit fields', make sure the details are correct, and try again.<br>If this issue persists, contact haifa.devs@gmail.com with the following error code: "
 };
@@ -29,9 +33,19 @@ function translateErrorMessage(errorMsg, statusCode) {
 
 export async function submitForm(formBody, isForProfit) {
 
-    if (!formBody.webAddress.length) {
+    if (!formBody.webAddress?.length) {
         // the server won't approve empty string.
         delete formBody.webAddress;
+    }
+    
+    if (!formBody.businessPlan?.length) {
+        // the server won't approve empty string.
+        delete formBody.businessPlan;
+    }
+    
+    if (!formBody.systemDefinition?.length) {
+        // the server won't approve empty string.
+        delete formBody.systemDefinition;
     }
 
     let response = await fetch(`${URL}/${isForProfit? 'profitableProjectReqs' : 'charitableProjectReqs'}`, {
@@ -43,6 +57,7 @@ export async function submitForm(formBody, isForProfit) {
     if (!response.ok) {
         const responseJson = await response.json();
         console.log(responseJson.message); // left intentionally for sergway
+        console.log(responseJson);
         return { 
             result: false, 
             error: translateErrorMessage(responseJson.message, response.status) 
