@@ -38,6 +38,7 @@ export default function FormConfirmation({
     }
     else{
       setResponse(response);
+      console.log(response.error)
     }
     setIsBusy(false);
   };
@@ -112,7 +113,7 @@ export default function FormConfirmation({
     );
   };
 
-  const ForProfitDetails = () => {
+  const ForProfitDetails = () => {     
     return (
       <>
         <tr className={response.error?.fieldName === "businessPlan"? "alert-danger" : null}>
@@ -162,7 +163,7 @@ export default function FormConfirmation({
         {
           !response.result // The result is false
           ? <Alert className={styles.errorMessage} variant="danger">
-              {response.error.text.split("<br>").map(str => <span>{str}</span>)}
+              {response.error.text?.split("<br>").map(str => <span>{str}</span>)}
             </Alert> 
           : null
         }
