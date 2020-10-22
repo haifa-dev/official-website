@@ -47,6 +47,10 @@ export async function submitForm(formBody, isForProfit) {
         // the server won't approve empty string.
         delete formBody.systemDefinition;
     }
+    
+    if (typeof formBody.isFunded !== 'boolean' && isForProfit) {
+        formBody.isFunded = false;
+    }
 
     let response = await fetch(`${URL}/${isForProfit? 'profitableProjectReqs' : 'charitableProjectReqs'}`, {
         method: "POST",
