@@ -1,0 +1,30 @@
+@import '../../stylesheets/variables_functions_mixins';
+
+.standOutNavItem {
+    margin-left: auto;
+}
+
+.socialIcons {
+
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+
+    a {
+        margin-left: 10px;
+        img {
+            height: 20px;
+            width: auto;
+        }
+    }
+}
+
+@include media-phone {
+    .standOutNavItem {
+        margin-left: 0;
+    }
+    
+    .socialIcons {
+        align-self: flex-start;
+    }
+}

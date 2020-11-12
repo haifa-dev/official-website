@@ -1,16 +1,13 @@
-import React from 'react';
+import React from "react";
+import Navbar from "react-bootstrap/Navbar";
 
-/**
- * Footer elements.
- * @version 1.1
- * @author [Dnku Mekonen, dnku](https://github.com/dnku)
- */
 const Footer = () => (
-  <footer>
-    <div className="container">
-      © 2019 haifa:dev community (non-profit). Landing page content designed and written by David Klein a.k.a Polarts. View this website's source code <a href="https://github.com/haifa-dev/haifa-dev-website">here</a>.
-    </div>
-  </footer>
+  <Navbar as="footer" bg="dark" variant="dark" className="py-0 footer">
+    <Navbar.Text className="text-center mx-auto">
+      © 2019 haifa:dev community (non-profit). View this website's source code
+      <a href="https://github.com/haifa-dev/haifa-dev-website"> here</a>.
+    </Navbar.Text>
+  </Navbar>
 );
 
 export default Footer;

@@ -1,0 +1,38 @@
+/* Specific styles for request form */
+
+
+.bottomContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bottomButtons {
+  display: flex;
+  flex-direction: row;
+}
+
+.errorMessage {
+  display: flex;
+  flex-direction: column;
+}
+
+.loadingDots {
+    display: flex;
+    flex-direction: row;
+    font-size: 30px;
+    color: green;
+    @for $i from 1 through 10 {
+      div:nth-child(#{$i}) {
+        animation: loading 1s infinite alternate linear;
+        animation-delay: ($i - 1)*0.1s;
+      }
+    }
+  }
+  
+  @keyframes loading {
+    0% { transform: scale(1.4); }
+    15% { transform: scale(1.2); } 
+    30% { transform: scale(1); }
+    100% { transform: scale(1); } 
+  }
