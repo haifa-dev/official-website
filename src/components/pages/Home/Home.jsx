@@ -33,10 +33,10 @@ const Home = (props) => {
     <div className="home" id="home" ref={refs.home}>
       <div className="jambo bg-secondary">
         <div className="landing-page">
-          <h1>
-            Haifa<span>:Dev</span>
+          <h1 className="logo">
+            haifa<span>:dev</span>
           </h1>
-          <h4>
+          <h4 className="logo">
             <span>developers</span> community
           </h4>
         </div>

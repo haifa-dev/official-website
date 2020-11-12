@@ -25,7 +25,7 @@ export default function ProjectCard() {
   return (
     <div className="container">
       <div className={styles.projectCard}>
-        <h3>Projects</h3>
+        <h3>Portfolio</h3>
         <p>Here are some of the projects we are working on at the moment:</p>
         <Repos />
       </div>

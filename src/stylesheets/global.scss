@@ -8,7 +8,7 @@ html, body, #root {
 body {
   margin: 0;
   color: #333;
-  font-family: 'Helvetica';
+  font-family: 'lato';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -98,7 +98,8 @@ code {
 
   h1 {
     color: $mainColor;
-    font-size: 60px;
+    font-size: 4rem;
+    font-weight: 500;
     position: absolute;
     top: 50px;
     left: 0;
@@ -186,4 +187,8 @@ td {
   padding: 5px 10px;
   vertical-align: top;
   overflow-wrap: anywhere;
+}
+
+.logo {
+  font-family: IBM Plex Mono,monospace;
 }
