@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import * as yup from "yup";
+import FieldDescription from './FieldDescription';
 
 export default function FormNonProfit({
   formState,
@@ -40,7 +41,7 @@ export default function FormNonProfit({
         <Form noValidate onSubmit={handleSubmit}>
           <Form.Row>
             <Form.Group as={Col} sm="10" md="8" controlId="field_1">
-              <Form.Label>Shortly describe what does your organization stand for:</Form.Label>
+              <Form.Label>Briefly describe what your organization stands for:</Form.Label>
               <Form.Control
                 type="text"
                 name="description"
@@ -55,7 +56,7 @@ export default function FormNonProfit({
 
           <Form.Row>
             <Form.Group as={Col} sm="10" md="8" controlId="field_2">
-              <Form.Label>Link to website:</Form.Label>
+              <Form.Label>Link to your organization's website:</Form.Label>
               <Form.Control
                 type="text"
                 name="webAddress"
@@ -87,7 +88,12 @@ export default function FormNonProfit({
 
           <Form.Row>
             <Form.Group as={Col} sm="10" md="8" controlId="field_4">
-              <Form.Label>Tell us about what needs to be done:</Form.Label>
+              <Form.Label>
+                <span>Tell us about what needs to be done:</span>
+                <FieldDescription>
+                  Describe in as many details as possible how you want your project to look and work
+                </FieldDescription>
+              </Form.Label>
               <Form.Control
                 as="textarea"
                 name="tasks"

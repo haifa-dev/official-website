@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import * as yup from "yup";
+import FieldDescription from './FieldDescription';
 
 export default function FormForProfit({
   formState,
@@ -45,7 +46,13 @@ export default function FormForProfit({
         <Form noValidate onSubmit={handleSubmit}>
           <Form.Row>
             <Form.Group as={Col} sm="8" md="7" controlId="field_1">
-              <Form.Label>Link to a business plan:</Form.Label>
+              <Form.Label>
+                <span>Link to a business plan:</span> 
+                <FieldDescription placement="bottom">
+                  Please provide a link to a presentation or document describing your project's business plan. 
+                  (You can host it on Google Drive or any other online storage)
+                </FieldDescription>
+              </Form.Label>
               <Form.Control
                 type="text"
                 name="businessPlan"
@@ -77,7 +84,13 @@ export default function FormForProfit({
 
           <Form.Row>
             <Form.Group as={Col} sm="8" md="7" controlId="field_3">
-              <Form.Label>Link to system definition:</Form.Label>
+              <Form.Label>
+                <span>Link to system specifications:</span>
+                <FieldDescription>
+                  Please provide a link to a presentation or document describing your system's specifications.
+                  (Spec Sheet, Brief, ORS/FRS)
+                </FieldDescription>
+              </Form.Label>
               <Form.Control
                 type="text"
                 name="systemDefinition"

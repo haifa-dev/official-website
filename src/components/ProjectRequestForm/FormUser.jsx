@@ -4,7 +4,6 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import * as yup from 'yup';
-import styles from './FormStyles.module.scss';
 import FieldDescription from './FieldDescription';
 
 export default function FormMain({ formState, setFormState, loadNextForm }) {
