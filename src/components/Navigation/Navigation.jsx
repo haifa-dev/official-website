@@ -20,9 +20,14 @@ const Navigation = () => {
             <Nav.Link href="#about" as={Link} to={{ pathname: "/", hash: "#about", state: "about" }}>About Us</Nav.Link>
             <Nav.Link href="#contact" as={Link} to={{ pathname: "/", hash: "#contact", state: "contact" }}>Contact</Nav.Link>
             <Nav.Link href="#team" as={Link} to={{ pathname: "/", hash: "#team", state: "team" }}>Our Team</Nav.Link>
-            <Nav.Link as={Link} to={{ pathname: "/Portfolio"}}>Portfolio</Nav.Link>
-            <Nav.Link as={Link} to={{ pathname: "/ProjectRequest"}} className={styles.standOutNavItem}>Request a project</Nav.Link>
+            {/* <Nav.Link as={Link} to={{ pathname: "/Portfolio"}}>Portfolio</Nav.Link> 
+              * CURRENTLY DISFUNCTIONAL
+              */}
+            <Nav.Link as={Link} to={{ pathname: "/ProjectRequest"}} className={styles.standOutNavItem}>Request help with a project</Nav.Link>
             <div className={styles.socialIcons}>
+              <a href="https://discord.gg/AgVSmeHdh7" target="_blank" rel="noopener noreferrer">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Font_Awesome_5_brands_discord_color.svg/896px-Font_Awesome_5_brands_discord_color.svg.png" alt="Discord" />
+              </a>
               <a href="https://www.facebook.com/groups/haifadev/" target="_blank" rel="noopener noreferrer">
                 <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" />
               </a>
