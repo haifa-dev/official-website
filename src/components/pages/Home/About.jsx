@@ -13,7 +13,7 @@ export default function About() {
         <p>
           Nobody wants to move far away from the place they call home just to
           establish a career. We don't think anyone should. That's why we've
-          established Haife:Dev, so that all of Haifa's developers will have{" "}
+          established Haifa:Dev, so that all of Haifa's developers will have{" "}
           <b>a reason to stay in Haifa</b>.
         </p>
       </article>
