@@ -1,30 +1,31 @@
-@import '../../stylesheets/variables_functions_mixins';
+@import "../../stylesheets/variables_functions_mixins";
 
 .standOutNavItem {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .socialIcons {
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
 
-    display: flex;
-    flex-direction: row;
-    align-self: center;
-
-    a {
-        margin-left: 10px;
-        img {
-            height: 20px;
-            width: auto;
-        }
+  a {
+    margin-left: 10px;
+    img {
+      height: 20px;
+      width: auto;
     }
+  }
 }
 
 @include media-phone {
-    .standOutNavItem {
-        margin-left: 0;
-    }
-    
-    .socialIcons {
-        align-self: flex-start;
-    }
+  .standOutNavItem {
+    margin-left: 0;
+  }
+
+  .socialIcons {
+    margin-left: 0;
+    align-self: flex-start;
+  }
 }
