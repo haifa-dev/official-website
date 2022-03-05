@@ -1,4 +1,4 @@
-@import './src/stylesheets/global.scss';
+@import "./src/stylesheets/global.scss";
 
 .card {
   position: relative;
@@ -70,7 +70,7 @@
     // header underline initial
     &:before,
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -8px;
       width: 0px;
